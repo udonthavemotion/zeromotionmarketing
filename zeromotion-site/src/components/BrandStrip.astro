@@ -1,0 +1,25 @@
+---
+import { readdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
+const brandDir = new URL('../../public/brand/', import.meta.url);
+const files = readdirSync(fileURLToPath(brandDir));
+const logos = files
+  .filter((f) => /\.(png|jpe?g|svg)$/i.test(f))
+  .map((f) => `/brand/${f}`);
+---
+<section id="work" class="section-padding reveal" aria-label="Work proofs">
+  <div class="container-page">
+    <div class="overflow-x-auto no-scrollbar border border-white/10 rounded-2xl">
+      <div class="flex items-center gap-10 px-6 py-6 min-w-max">
+        {logos.map((src) => (
+          <img src={src} alt="Brand mark" width="200" height="64" class="h-8 md:h-10 w-auto opacity-90" loading="lazy" />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style> 

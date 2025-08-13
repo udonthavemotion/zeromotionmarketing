@@ -1,0 +1,33 @@
+{
+  "name": "users-godspeed-desktop-zeromotion-zeromotion-site",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "astro check && tsc -p tsconfig.json --noEmit",
+    "test:install": "playwright install --with-deps",
+    "test:e2e": "pnpm build && playwright test",
+    "test:e2e:headed": "pnpm build && playwright test --headed"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.3.0",
+    "@iconify-json/lucide": "^1.2.62",
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "astro": "^5.12.9",
+    "astro-icon": "^1.1.5",
+    "framer-motion": "^12.23.12",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "resend": "6.0.1",
+    "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.2"
+  },
+  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
+}

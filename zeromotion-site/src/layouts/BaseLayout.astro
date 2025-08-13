@@ -1,0 +1,83 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+const { title = "ZeroMotion — AI‑Powered Web & Marketing for Houma & Thibodaux", description = "ZeroMotion leads Houma & Thibodaux into the digital future with AI websites, ads, and automation. Local roots. Global standards. Real results.", ogImage = "/favico/android-chrome-512x512.png" } = Astro.props as Props;
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+<html lang="en" class="bg-ink text-white">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0A0A0A" />
+    <link rel="icon" href="/favico/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favico/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favico/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/favico/apple-touch-icon.png" />
+    <link rel="manifest" href="/favico/site.webmanifest" />
+    <meta property="og:image" content={ogImage} />
+    <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <style>
+      /* Respect reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; }
+      }
+      html { scroll-behavior: smooth; }
+    </style>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    {import.meta.env.PUBLIC_GTM_ID && (
+      <>
+        <script is:inline>
+          (function(w,d,s,l,i){
+            w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true; j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl; f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','{import.meta.env.PUBLIC_GTM_ID}');
+        </script>
+      </>
+    )}
+    <script type="application/ld+json">
+    {`
+    {
+      "@context":"https://schema.org",
+      "@type":"LocalBusiness",
+      "name":"ZeroMotion",
+      "url":"https://<YOUR-DOMAIN>",
+      "telephone":"(985) 217-0368",
+      "address":{"@type":"PostalAddress","addressLocality":"Houma","addressRegion":"LA","postalCode":"70360","addressCountry":"US"},
+      "areaServed":["Houma","Thibodaux","Morgan City","Lafourche","Terrebonne"],
+      "sameAs":["https://instagram.com/zeromotion","https://facebook.com/zeromotion"],
+      "priceRange":"$$",
+      "description":"AI-powered web design and local domination for Louisiana businesses.",
+      "image":"/favico/android-chrome-512x512.png"
+    }
+    `}
+    </script>
+  </head>
+  <body class="min-h-screen antialiased selection:bg-primary/30 selection:text-white">
+    {import.meta.env.PUBLIC_GTM_ID && (
+      <noscript><iframe src={"https://www.googletagmanager.com/ns.html?id="+import.meta.env.PUBLIC_GTM_ID} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    )}
+    <Navbar />
+    <slot />
+    <Footer />
+    <script>
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!prefersReduced && 'IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries)=>{
+          for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target); } }
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+      }
+    </script>
+  </body>
+</html> 

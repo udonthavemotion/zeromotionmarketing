@@ -1,0 +1,15 @@
+---
+const { formId, collectUtm = true } = Astro.props;
+---
+<div data-gf-form={formId}></div>
+<script src="https://link.gohighlevel.com/form_embed.js" is:inline></script>
+{collectUtm && (
+  <script is:inline>
+    const p = new URLSearchParams(location.search);
+    const set = (n,v)=>{ const el=document.querySelector(`[name="${n}"]`); if(el) el.value=v; };
+    set('utm_source', p.get('utm_source') || '(direct)');
+    set('utm_medium', p.get('utm_medium') || '');
+    set('utm_campaign', p.get('utm_campaign') || '');
+    const u = document.querySelector('[name="page_url"]'); if(u) u.value = location.href;
+  </script>
+) } 

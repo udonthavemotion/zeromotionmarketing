@@ -1,0 +1,36 @@
+---
+---
+<section id="contact" class="section-padding reveal" aria-labelledby="contact-title">
+  <div class="container-page max-w-2xl">
+    <h2 id="contact-title" class="h2 mb-2 text-center">Your brand in motion starts here.</h2>
+    <form id="contact-form" class="card p-6 grid gap-4 bg-ink">
+      <label class="grid gap-2">
+        <span class="text-sm text-white/70">Name</span>
+        <input name="name" required class="bg-white/5 border border-white/10 rounded-xl px-3 py-2" />
+      </label>
+      <label class="grid gap-2">
+        <span class="text-sm text-white/70">Email</span>
+        <input type="email" name="email" required class="bg-white/5 border border-white/10 rounded-xl px-3 py-2" />
+      </label>
+      <label class="grid gap-2">
+        <span class="text-sm text-white/70">Message</span>
+        <textarea name="message" rows="5" class="bg-white/5 border border-white/10 rounded-xl px-3 py-2" placeholder="Tell us about your project or goals" ></textarea>
+      </label>
+      <div class="flex justify-end">
+        <button type="submit" class="btn-metal">Send</button>
+      </div>
+    </form>
+    <p class="subtle mt-3 text-center">Prefer email or phone? <a href="mailto:zeromotionmarketing@gmail.com" class="underline decoration-white/20 hover:decoration-white">zeromotionmarketing@gmail.com</a> • <a href="tel:+119852170368" class="underline decoration-white/20 hover:decoration-white">(985) 217-0368</a><br/>Proudly serving Houma, Thibodaux, Bourg, Morgan City, New Orleans, and Baton Rouge.</p>
+  </div>
+</section>
+<script>
+  const form = document.getElementById('contact-form');
+  form?.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form as HTMLFormElement).entries());
+    const payload = { ...data, business: 'N/A', niche: 'General' };
+    const res = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    if(res.ok){ alert('Thanks — we\'ll be in touch.'); (form as HTMLFormElement).reset(); }
+    else { alert('Something went wrong. Try again later.'); }
+  });
+</script> 

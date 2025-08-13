@@ -1,0 +1,188 @@
+BRAND IDENTITY - GOLEVELDADDY INTEGRATION CHECKLIST
+=====================================================
+
+POST-LAUNCH INTEGRATION TASKS FOR BRAND & IDENTITY SERVICE PAGE
+
+## FORMS/SURVEYS
+===============
+
+### Brand Brief Form Creation
+[ ] Create "Brand Brief" form in GoHighLevel
+[ ] Form fields to include:
+    - Business Name (text)
+    - Industry/Business Type (dropdown)
+    - Mission Statement (textarea)
+    - Target Audience (textarea)
+    - Main Competitors (text)
+    - Brand Personality (checkboxes: Professional, Friendly, Bold, Luxury, Playful, etc.)
+    - Color Preferences (text + file upload for inspiration)
+    - Colors to Avoid (text)
+    - Logo Style Preferences (radio: Modern, Classic, Minimalist, Bold, Illustrated)
+    - Brand Voice Sliders (1-10 scales):
+      * Formal ←→ Casual
+      * Serious ←→ Playful  
+      * Traditional ←→ Innovative
+      * Conservative ←→ Bold
+    - Inspiration Links/Examples (textarea)
+    - Package Selection (radio: Starter $600, Growth $1200, Pro $2000)
+    - Timeline Expectations (dropdown)
+    - Contact Info (name, email, phone)
+
+[ ] Form embed code generated
+    FORM_ID = __________ (fill after creation)
+
+[ ] Replace placeholder button in /src/pages/services/brand-identity.astro #brief section
+    Replace: <button class="btn cta" style="opacity:0.7;cursor:not-allowed">
+    With: <div data-gf-form="FORM_ID"></div>
+
+## PIPELINES & STAGES
+====================
+
+### Brand Projects Pipeline
+[ ] Create pipeline: "Brand Projects"
+[ ] Pipeline stages:
+    1. New Lead
+    2. Brief Received  
+    3. Direction Chosen
+    4. Design In Progress
+    5. Client Approval
+    6. Files Delivered
+    7. Won
+    8. Lost
+
+[ ] Workflow trigger: "Brand Brief Form Submitted"
+    Action: Create contact/opportunity in "Brief Received" stage
+    
+    PIPELINE_BRAND = __________ (pipeline ID)
+    STAGE_BRAND_BRIEF = __________ (Brief Received stage ID)
+
+## AUTOMATIONS
+==============
+
+### Immediate Response (Form Submitted)
+[ ] Trigger: Brand Brief form submitted
+[ ] Actions:
+    - Create/update contact with form data
+    - Send internal email notification to team
+    - Create task: "Start moodboards for [Business Name]"
+    - Tag contact: "brand-client"
+    - Auto SMS to client: "Got your brand brief — we're on it. Expect moodboards in 48 hrs. - ZeroMotion Team"
+
+### 48-Hour Follow-up
+[ ] Trigger: 48 hours after Brief Received stage
+[ ] Condition: No reply to initial SMS
+[ ] Action: Send SMS "Preview ready to review? We've got your initial direction concepts ready. Reply YES to see them."
+
+### Project Status Updates
+[ ] Stage change automations:
+    - Direction Chosen → SMS: "Direction approved! Moving to design phase. Logo concepts in 3-5 days."
+    - Design In Progress → SMS: "Your logo system is taking shape. Preview coming soon."
+    - Client Approval → SMS: "Approved! Preparing your final files and style guide."
+    - Files Delivered → SMS: "Your complete brand package is ready! Check your email for Google Drive link."
+
+## CALENDARS
+============
+
+### Brand Strategy Call
+[ ] Create calendar: "Brand Strategy Call (10 min)"
+[ ] Availability: Business hours only
+[ ] Buffer time: 15 min between calls
+[ ] Confirmation: Auto SMS + email with Zoom link
+[ ] Reminder: 1 hour before call
+
+    CALENDAR_ID = __________ (fill after creation)
+
+[ ] Add calendar link to brand-identity.astro if needed for Pro package consultation
+
+## ASSETS DELIVERY
+==================
+
+### Google Drive Setup
+[ ] Create master folder: "Brand Clients - ZeroMotion"
+[ ] Template folder structure:
+    /[Client Name] - Brand Package/
+      /01-Logo Files/
+        /SVG/
+        /PNG/  
+        /Favicon/
+      /02-Style Guide/
+      /03-Social Templates/
+      /04-Brand Voice/
+      /05-Sales Materials/
+
+[ ] Delivery automation:
+    - Trigger: Files Delivered stage
+    - Action: Send email with Google Drive share link
+    - Template: "Your complete brand package is ready! Access your files: [DRIVE_LINK]"
+
+### Template Links
+[ ] Canva template setup for Social Pack
+[ ] Share links for each package tier:
+    
+    DRIVE_LINK_STYLEGUIDE = __________ (template link)
+    CANVA_TEMPLATES_LINK = __________ (template link)
+
+## TRACKING & ANALYTICS
+======================
+
+### Contact Custom Fields
+[ ] Add custom fields to capture:
+    - utm_source
+    - utm_medium  
+    - utm_campaign
+    - page_url (brand-identity page)
+    - package_selected
+    - project_start_date
+    - project_completion_date
+
+[ ] Form submission webhook to update fields
+[ ] Optional: GA4 Measurement Protocol webhook for conversion tracking
+
+## ENVIRONMENT VARIABLES & IDS
+==============================
+
+Fill these after GHL setup:
+
+GHL_FORM_BRAND_BRIEF = 
+GHL_CAL_BRAND_STRATEGY = 
+PIPELINE_BRAND = 
+STAGE_BRAND_BRIEF = 
+STAGE_BRAND_DIRECTION = 
+STAGE_BRAND_DESIGN = 
+STAGE_BRAND_APPROVAL = 
+STAGE_BRAND_DELIVERED = 
+
+## TESTING PLAN
+===============
+
+### Pre-Launch Test Sequence
+[ ] Submit test brand brief form
+[ ] Verify contact created in GHL with correct pipeline stage
+[ ] Confirm auto SMS fires to test number
+[ ] Check internal email notification delivered
+[ ] Test stage progression automations
+[ ] Verify Google Drive folder creation/sharing
+[ ] Test calendar booking (if using Pro consultation)
+
+### Post-Launch Monitoring
+[ ] Monitor form submission rates
+[ ] Track pipeline conversion rates by stage
+[ ] Review SMS delivery rates
+[ ] Check client satisfaction with automation timing
+
+## INTEGRATION NOTES
+===================
+
+- All SMS messages should maintain ZeroMotion brand voice (direct, professional, Louisiana-friendly)
+- Email templates should match website aesthetic (dark theme, clean typography)
+- Form styling should integrate seamlessly with brand-identity.astro page design
+- Consider A/B testing different SMS timing (immediate vs 1-hour delay)
+- Set up monthly pipeline review to optimize conversion rates
+
+COMPLETION CHECKLIST:
+[ ] All forms created and embedded
+[ ] Pipeline and stages configured  
+[ ] Automations tested and active
+[ ] Asset delivery system operational
+[ ] Analytics tracking implemented
+[ ] Team trained on new process 

@@ -1,0 +1,166 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import GHLForm from "../../components/GHLForm.astro";
+
+const base = "/pictures/web design page/";
+
+const HERO_VIDEO = base + "beautiful.mp4";
+const MACHINE = base + "8machine-_-gCkv8mnmxm8-unsplash.jpg";
+const CARBON = base + "carbon fiber.jpg";
+
+// Industrial vibes replacements
+const INDUSTRIAL_1 = base + "detail/industrilcleanvibes/pexels-pixabay-159298.jpg";
+const INDUSTRIAL_2 = base + "detail/industrilcleanvibes/pexels-magda-ehlers-pexels-2569831.jpg";
+
+// Requested replacement image
+const ADRIEN = base + "detail/pexels-adrien-olichon-1257089-2387793.jpg";
+
+// Backgrounds
+const cssCarbon = `background-image:url("${ADRIEN}")`; // use requested image for packages section
+const cssIndustrial1  = `background-image:url("${INDUSTRIAL_1}")`;
+const cssIndustrial2  = `background-image:url("${INDUSTRIAL_2}")`;
+
+const title = "Web Design • ZeroMotion";
+const description = "Apple‑clean, conversion‑focused websites that load fast, rank locally, and turn visitors into booked calls.";
+const ogImage = "/og-webdesign.png";
+---
+<BaseLayout {title} {description} {ogImage}>
+  <section class="hero">
+    <video src={HERO_VIDEO} autoplay muted loop playsinline poster={MACHINE}></video>
+    <div class="container-page">
+      <h1 class="h1">Websites that look like luxury. Sell like machines.</h1>
+      <p class="sub">10-day builds. AI-powered automations. Local domination.</p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:18px">
+        <a class="btn" href="#audit" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'Book Audit'})">Book Free Audit</a>
+        <a class="btn ghost" href="#packages" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'See Packages'})">See Packages</a>
+      </div>
+      <div style="opacity:.7;margin-top:14px">Houma-born • Built with Astro • AI-powered</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="grid-3 container-page">
+      <div class="card">
+        <h3 class="h2">Conversion-first</h3>
+        <p>Clear offer, friction-free forms, above-the-fold CTAs.</p>
+      </div>
+      <div class="card">
+        <h3 class="h2">Fast & SEO-ready</h3>
+        <p>Astro speed, clean on-page SEO, and local schema.</p>
+      </div>
+      <div class="card">
+        <h3 class="h2">Automation baked-in</h3>
+        <p>Leads drop into GHL with Auto SMS & pipeline tracking.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style={`background:#0b0b0c`}>
+    <div class="container-page" style="display:grid;gap:24px;align-items:center;grid-template-columns:1fr;@media(min-width:900px){grid-template-columns:1.1fr .9fr}">
+      <div>
+        <h2 class="h2">Looks like luxury. Performs like a machine.</h2>
+        <p class="sub">Minimal UI, brutal clarity, and ruthless speed. We strip fluff, tighten copy, and wire analytics so every click moves the sale forward.</p>
+        <ul style="margin-top:12px;opacity:.9">
+          <li>On-page fixes that lift conversions in days</li>
+          <li>Schema, GA4, and Microsoft Clarity built-in</li>
+          <li>GHL pipeline + Auto SMS for instant follow-up</li>
+        </ul>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <img src={ADRIEN} alt="Industrial clean aesthetic" style="display:block;width:100%;height:100%;object-fit:cover" loading="lazy"/>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style={`${cssIndustrial1}; background-size:cover;background-position:center`}>
+    <div class="container-page">
+      <h2 class="h2" style="margin-bottom:18px">Our 10-Day Build</h2>
+      <div class="timeline">
+        <div class="card"><strong>Audit</strong><br/>Quick discovery, speed test, wireframe.</div>
+        <div class="card"><strong>Design</strong><br/>Hero, sections, copy tone, assets.</div>
+        <div class="card"><strong>Build</strong><br/>Astro pages, schema, GA4/GTM.</div>
+        <div class="card"><strong>Launch</strong><br/>Deploy + tracking + handoff.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages" class="section" style={`${cssCarbon}; background-size:cover;background-position:center`}>
+    <div class="container-page grid-3">
+      <div class="card pkg">
+        <h3 class="h2">Starter</h3>
+        <div class="price">$750</div>
+        <ul>
+          <li>1-page site (hero + services + CTA)</li>
+          <li>GHL form embed + email notification</li>
+          <li>Basic on-page revision (copy & spacing)</li>
+          <li>Local schema + GA4 events</li>
+        </ul>
+        <a class="btn cta" href="#audit" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'Start Starter'})">Start</a>
+      </div>
+
+      <div class="card pkg">
+        <span class="badge">Best Seller</span>
+        <h3 class="h2">Growth</h3>
+        <div class="price">$1,250</div>
+        <ul>
+          <li>Up to 4 pages (Home/Services/About/Contact)</li>
+          <li>GHL pipeline + Auto SMS workflow</li>
+          <li>GBP setup + 3 revisions</li>
+          <li>Microsoft Clarity heatmaps/recordings</li>
+        </ul>
+        <a class="btn cta" href="#audit" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'Start Growth'})">Start</a>
+      </div>
+
+      <div class="card pkg">
+        <h3 class="h2">Pro</h3>
+        <div class="price">$2,000</div>
+        <ul>
+          <li>10–12 pages + custom sections</li>
+          <li>Advanced GTM events (form_submit, cta_click, call_click, book_call)</li>
+          <li>Quarterly CRO review + A/B tests</li>
+          <li>Local SEO boost (citations + 1 geo page)</li>
+        </ul>
+        <a class="btn cta" href="#audit" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'Start Pro'})">Book Call</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style={`${cssIndustrial2}; background-size:cover;background-position:center`}>
+    <div class="container-page">
+      <h2 class="h2">FAQ</h2>
+      <div class="card"><strong>How fast do we go live?</strong><br/>Typical build is 10 days once content is approved.</div>
+      <div class="card"><strong>What is “on-page revision”?</strong><br/>Copy tightening, spacing, headings, alt-text, internal links — fast polish for clarity and SEO.</div>
+      <div class="card"><strong>What’s included in analytics?</strong><br/>GA4 via GTM with events for form submits & key CTA clicks; Clarity for heatmaps.</div>
+      <div class="card"><strong>Hosting & support?</strong><br/>Static hosting (Namecheap / Vercel). We offer monthly care plans if needed.</div>
+      <div class="card"><strong>How does the audit work?</strong><br/>2–5 min Loom video + one-pager showing the quickest wins and price options.</div>
+    </div>
+  </section>
+
+  <section id="audit" class="section">
+    <div class="container-page">
+      <h2 class="h2">Get a free mini-audit</h2>
+      <p class="sub">We’ll text you a 2-minute video with 3 fast wins.</p>
+      <div class="card">
+        <GHLForm formId="REPLACE_WITH_YOUR_GHL_FORM_ID" />
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    document.addEventListener('submit', function(e){
+      var target = e.target;
+      if(target && target.closest && target.closest('[data-gf-form]')){
+        window.dataLayer.push({event:'form_submit',label:'GHL Web Design Form'});
+      }
+    }, true);
+  </script>
+
+  <!--
+  [ ] All images/videos resolve using the EXACT filenames in /public/pictures/web design page/
+  [ ] Hero video plays; poster uses the 8machine-* image
+  [ ] CTA clicks push dataLayer events; form_submit fires
+  [ ] GHL form submits create a Contact and send Auto SMS
+  [ ] Lighthouse > 90, images lazy-loaded, no layout shift
+  -->
+</BaseLayout> 

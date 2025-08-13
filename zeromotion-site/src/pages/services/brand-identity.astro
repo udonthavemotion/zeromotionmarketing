@@ -1,0 +1,218 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const base = "/pictures/web%20design%20page/";
+
+// Asset resolution - using exact filenames found in directory
+const CARBON = base + "carbon%20fiber.jpg";
+const GEARS = base + "gears.jpg";
+const LOUISIANA = base + "louisiana%20.jpg"; // Note the space in filename
+const MACHINE_POSTER = base + "8machine-_-gCkv8mnmxm8-unsplash.jpg";
+const HERO_VIDEO = base + "webpage.mp4";
+const ADRIEN = base + "detail/pexels-adrien-olichon-1257089-2387793.jpg";
+
+// CSS background strings with URL-encoded filenames
+const cssCarbon = `background-image:url("${CARBON}")`;
+const cssGears = `background-image:url("${GEARS}")`;
+const cssLouisiana = `background-image:url("${LOUISIANA}")`;
+const cssAdrien = `background-image:url("${ADRIEN}")`;
+
+const title = "Brand & Identity • ZeroMotion";
+const description = "Look like luxury. Sound like authority. Stay consistent everywhere. Complete brand systems that scale your content and convert.";
+const ogImage = "/og-webdesign.png";
+---
+<BaseLayout {title} {description} {ogImage}>
+  <section class="hero">
+    <video src={HERO_VIDEO} autoplay muted loop playsinline poster={MACHINE_POSTER}></video>
+    <div class="container-page">
+      <h1 class="h1">Brand & Identity</h1>
+      <p class="sub">Look like luxury. Sound like authority. Stay consistent everywhere.</p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:18px">
+        <a class="btn" href="#packages" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'BI CTA'})">See Packages</a>
+        <a class="btn ghost" href="#process" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'BI CTA'})">Our Process</a>
+      </div>
+      <div style="opacity:.7;margin-top:14px">Leading the core front of artificial intelligence innovation in Houma, Louisiana.</div>
+    </div>
+  </section>
+
+  <section class="section" style={`${cssAdrien}; background-size:cover;background-position:center`}>
+    <div class="grid-3 container-page">
+      <div class="card">
+        <h3 class="h2">Clear, memorable logo system</h3>
+        <p>Primary, secondary, and mark variations that work everywhere from business cards to billboards.</p>
+      </div>
+      <div class="card">
+        <h3 class="h2">A voice people trust</h3>
+        <p>Brand tone pillars and AI prompts so every piece of content sounds like you, not ChatGPT.</p>
+      </div>
+      <div class="card">
+        <h3 class="h2">Templates that scale content fast</h3>
+        <p>Social media pack and sales materials ready to customize and deploy instantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style={`${cssGears}; background-size:cover;background-position:center;background-attachment:fixed`}>
+    <div class="container-page">
+      <h2 class="h2" style="margin-bottom:18px">What You Get</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3 class="h3">Logo Suite</h3>
+          <p>Primary logo, secondary mark, favicon, and variations for light/dark backgrounds.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Mini Style Guide</h3>
+          <p>PDF with colors, fonts, logo usage rules, and spacing guidelines.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Brand Voice Prompts</h3>
+          <p>Copy/paste commands for ChatGPT to write in your exact tone and style.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Social Pack</h3>
+          <p>8-12 customizable templates for posts, stories, and announcements.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Sales One-Pager</h3>
+          <p>Professional PDF overview of your services, pricing, and contact info.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Pro Add-ons</h3>
+          <p>Extended brand rules, launch kit, and handoff Loom for enterprise clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section" style={`${cssAdrien}; background-size:cover;background-position:center`}>
+    <div class="container-page">
+      <h2 class="h2" style="margin-bottom:18px">Our Process</h2>
+      <div class="timeline">
+        <div class="card">
+          <strong>1. Discover</strong><br/>
+          Brand brief questionnaire + 10-minute strategy call to nail your positioning.
+        </div>
+        <div class="card">
+          <strong>2. Direction</strong><br/>
+          Moodboards and initial concepts to establish visual direction and tone.
+        </div>
+        <div class="card">
+          <strong>3. Design</strong><br/>
+          Logo system, style guide, templates, and brand voice development.
+        </div>
+        <div class="card">
+          <strong>4. Deliver</strong><br/>
+          All exports, style guide PDF, and handoff with implementation guidance.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages" class="section" style={`${cssAdrien}; background-size:cover;background-position:center`}>
+    <div class="container-page grid-3">
+      <div class="card pkg">
+        <h3 class="h2">Starter</h3>
+        <div class="price">$600</div>
+        <ul>
+          <li>Logo suite (primary/secondary/mark)</li>
+          <li>Mini Style Guide (PDF)</li>
+          <li>Brand Voice (3 tone pillars + AI prompt)</li>
+          <li>2 revisions included</li>
+        </ul>
+        <a class="btn cta" href="#brief" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'BI CTA'})">Start</a>
+      </div>
+
+      <div class="card pkg">
+        <span class="badge">Best Seller</span>
+        <h3 class="h2">Growth</h3>
+        <div class="price">$1,200</div>
+        <ul>
+          <li>Everything in Starter</li>
+          <li>Social Pack (10 templates)</li>
+          <li>Sales One-Pager (PDF)</li>
+          <li>3 revisions + export kit (PNGs/SVGs)</li>
+        </ul>
+        <a class="btn cta" href="#brief" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'BI CTA'})">Start</a>
+      </div>
+
+      <div class="card pkg">
+        <h3 class="h2">Pro</h3>
+        <div class="price">$2,000</div>
+        <ul>
+          <li>Everything in Growth</li>
+          <li>Extended system (layout grid, icon/photo rules)</li>
+          <li>Launch kit + handoff Loom</li>
+          <li>Quarterly check-in (1 session)</li>
+        </ul>
+        <a class="btn cta" href="#brief" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'BI CTA'})">Book Call</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style={`${cssAdrien}; background-size:cover;background-position:center`}>
+    <div class="container-page">
+      <h2 class="h2">FAQ</h2>
+      <div class="card">
+        <strong>How long does it take?</strong><br/>
+        10-day sprint after content approval and brand brief completion.
+      </div>
+      <div class="card">
+        <strong>What's a "brand voice prompt"?</strong><br/>
+        A copy/paste command for ChatGPT to write in your exact tone, style, and personality.
+      </div>
+      <div class="card">
+        <strong>What files do I get?</strong><br/>
+        SVG and PNG logo files, PDF style guide, Canva template links, and brand voice document.
+      </div>
+      <div class="card">
+        <strong>How many revisions are included?</strong><br/>
+        Depends on your package: 2 for Starter, 3 for Growth, unlimited for Pro.
+      </div>
+      <div class="card">
+        <strong>Can we add a website later?</strong><br/>
+        Absolutely. We offer bundle discounts when combining brand + web design packages.
+      </div>
+    </div>
+  </section>
+
+  <section id="brief" class="section" style={`${cssAdrien}; background-size:cover;background-position:center`}>
+    <div class="container-page">
+      <h2 class="h2">Ready to start your brand?</h2>
+      <p class="sub">After launch, we'll collect your brand details via our comprehensive GoLevelDaddy brand brief form.</p>
+      <div class="card">
+        <button class="btn cta" style="opacity:0.7;cursor:not-allowed" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'BI CTA'})">Post launch: Add Brand Brief</button>
+        <p style="margin-top:12px;opacity:0.6;font-size:14px">This form will be integrated after site launch</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style={`${cssLouisiana}; background-size:cover;background-position:center;position:relative`}>
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.7)"></div>
+    <div class="container-page" style="position:relative;text-align:center;padding:60px 0">
+      <h2 class="h1" style="margin:0">Houma-led. At the forefront of AI innovation in Louisiana.</h2>
+      <div style="margin-top:18px">
+        <a class="btn cta" href="#packages" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'BI CTA'})">See Packages</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    document.addEventListener('submit', function(e){
+      var target = e.target;
+      if(target && target.closest && target.closest('[data-gf-form]')){
+        window.dataLayer.push({event:'form_submit',label:'GHL Brand Identity Form'});
+      }
+    }, true);
+  </script>
+
+  <!--
+  [ ] All images/videos resolve using URL-encoded filenames from /public/pictures/web design page/
+  [ ] Hero video plays with 8machine poster fallback
+  [ ] CTA clicks push dataLayer events with 'BI CTA' label
+  [ ] Post-launch: GHL brand brief form integration
+  [ ] Lighthouse > 90, images lazy-loaded, no layout shift
+  -->
+</BaseLayout> 

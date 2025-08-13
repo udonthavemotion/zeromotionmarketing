@@ -1,0 +1,59 @@
+---
+interface Service {
+  title: string;
+  blurb: string;
+  img: string;
+  href?: string;
+  video?: string;
+}
+const services: Service[] = [
+  { title: "Brand Strategy & Identity", blurb: "Positioning, voice, and visual identity that make local brands feel world‑class.", img: "/photos/brand-identity.jpg", video: "/assets/3024109-hd_1920_1080_25fps.mp4", href: "/services/brand-identity" },
+  { title: "Web Design & Development", blurb: "Modern, responsive, lightning‑fast sites engineered for conversion.", img: "/photos/lee-campbell-DtDlVpy-vvQ-unsplash.jpg", href: "/services/web-design" },
+  { title: "Ad Campaigns & Media", blurb: "ROI‑driven campaigns across Meta, Google, and TikTok — creative that turns attention into sales.", img: "/photos/ad-campaigns.jpg", video: "/photos/ad-campaigns.mp4", href: undefined },
+  { title: "Forefront of AI Integration", blurb: "Automations, CRM, and chat that work while you sleep — GoHighLevel, ChatGPT, and custom workflows tuned for the Bayou market.", img: "/photos/video-motion.jpg", video: "/assets/digital.mp4", href: "#ai-integration" }
+];
+---
+<section id="services" class="section-padding reveal" aria-labelledby="services-title">
+  <div class="container-page">
+    <h2 id="services-title" class="h2 mb-8">Services</h2>
+    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+      {services.map((s) => (
+        s.href ? (
+          <a href={s.href} class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 min-h-[220px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6E00FF]">
+            {s.video ? (
+              <video class="absolute inset-0 h-full w-full object-cover opacity-60" autoplay muted loop playsinline preload="metadata" poster={s.img}>
+                <source src={s.video} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={s.img} alt={s.title} width="800" height="600" loading="lazy" class="absolute inset-0 h-full w-full object-cover opacity-60" />
+            )}
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/70"></div>
+            <div class="relative p-6 flex flex-col gap-2 justify-end min-h-[220px]">
+              <h3 class="h3">{s.title}</h3>
+              <p class="text-white/85 text-sm">{s.blurb}</p>
+              <div class="mt-1 inline-flex items-center gap-2 text-primary/80">
+                <span class="text-sm">Explore</span>
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none"><path d="M8 5l8 7-8 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+          </a>
+        ) : (
+          <article class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 min-h-[220px]">
+            {s.video ? (
+              <video class="absolute inset-0 h-full w-full object-cover opacity-60" autoplay muted loop playsinline preload="metadata" poster={s.img}>
+                <source src={s.video} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={s.img} alt={s.title} width="800" height="600" loading="lazy" class="absolute inset-0 h-full w-full object-cover opacity-60" />
+            )}
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/70"></div>
+            <div class="relative p-6 flex flex-col gap-2 justify-end min-h-[220px]">
+              <h3 class="h3">{s.title}</h3>
+              <p class="text-white/85 text-sm">{s.blurb}</p>
+            </div>
+          </article>
+        )
+      ))}
+    </div>
+  </div>
+</section> 

@@ -1,0 +1,23 @@
+---
+import { packages } from "../data/packages";
+import { formatCurrencyMonthly } from "../lib/utils";
+---
+<section id="pricing" class="section-padding reveal" aria-labelledby="pricing-title">
+  <div class="container-page">
+    <h2 id="pricing-title" class="h2 mb-8">Packages</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      {packages.map((p) => (
+        <div class="card p-6 flex flex-col">
+          <h3 class="h3 mb-1">{p.title}</h3>
+          <div class="text-primary text-sm mb-4">{p.blurb}</div>
+          <div class="text-4xl font-semibold mb-4">{formatCurrencyMonthly(p.priceCents)}</div>
+          <ul class="text-sm text-white/85 space-y-2 mb-6">
+            {p.includes.map((i) => (<li class="flex gap-2"><span class="text-primary">•</span><span>{i}</span></li>))}
+          </ul>
+          <a href="#contact" class="btn-primary mt-auto">Choose {p.title}</a>
+        </div>
+      ))}
+    </div>
+    <p class="subtle mt-4">Ad spend billed separately.</p>
+  </div>
+</section> 

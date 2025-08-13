@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+---
+<BaseLayout>
+  <main>
+    <Hero />
+    <Services />
+    <section id="ai-integration" class="section-padding reveal" aria-labelledby="ai-integration-title">
+      <div class="container-page">
+        <h2 id="ai-integration-title" class="h2 mb-4">Forefront of AI Integration</h2>
+        <p class="text-white/85 max-w-2xl">Built in Houma for Houma. We connect your website, ads, and inbox into one growth system: AI chat, automated follow‑ups, and a CRM that never forgets. The result? Faster replies, higher close rates, and time back in your day.</p>
+        <div class="grid md:grid-cols-3 gap-6 mt-6">
+          <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6">
+            <h3 class="h3">AI Lead Capture</h3>
+            <p class="text-white/80 text-sm mt-2">24/7 site chat and SMS that answers questions, books calls, and pushes leads into your pipeline.</p>
+          </div>
+          <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6">
+            <h3 class="h3">Automated Follow‑Up</h3>
+            <p class="text-white/80 text-sm mt-2">Instant replies, drip sequences, and missed‑call text‑back so no lead goes cold.</p>
+          </div>
+          <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6">
+            <h3 class="h3">CRM + Reporting</h3>
+            <p class="text-white/80 text-sm mt-2">GoHighLevel pipelines, reputation boosts, and dashboards that show what’s working in real time.</p>
+          </div>
+        </div>
+        <ul class="grid gap-2 mt-6 text-white/80">
+          <li>Website chat + SMS/Email sequences</li>
+          <li>Lead routing to phone, inbox, and pipeline</li>
+          <li>Review generation & reputation management</li>
+          <li>Booking calendars and no‑show reduction</li>
+          <li>Weekly KPI snapshots to your email</li>
+        </ul>
+        <div class="mt-6">
+          <a href="#contact" class="btn-primary">Let’s Build Your Automations</a>
+        </div>
+      </div>
+    </section>
+    <About />
+    <Contact />
+  </main>
+</BaseLayout>

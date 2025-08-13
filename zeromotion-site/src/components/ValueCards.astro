@@ -1,0 +1,21 @@
+---
+const items = [
+  { title: 'Websites that convert', k: 'Convert', blurb: 'Apple-clean sites that turn traffic into calls.' },
+  { title: 'Leads on autopilot', k: 'Automate', blurb: 'Follow-ups handled. Miss fewer deals.' },
+  { title: 'Local SEO & ads that win', k: 'Dominate', blurb: 'Rank local. Win search. Own Houma.' },
+];
+---
+<section id="services" class="section-padding reveal" aria-labelledby="services-title">
+  <div class="container-page">
+    <h2 id="services-title" class="h2 mb-8">What we do</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      {items.map((it) => (
+        <div class="card p-6">
+          <div class="text-primary text-sm font-semibold mb-2">{it.k}</div>
+          <h3 class="h3 mb-2">{it.title}</h3>
+          <p class="text-white/80 text-sm">{it.blurb}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section> 

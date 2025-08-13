@@ -1,0 +1,13 @@
+---
+---
+<section class="section-padding" aria-label="CTA">
+  <div class="container-page card p-8 text-center">
+    <h2 class="h2 mb-3">Get your Free Local Audit.</h2>
+    <button class="btn-primary" data-open-lead-modal>Get Started</button>
+  </div>
+</section>
+<script>
+  document.querySelectorAll('[data-open-lead-modal]').forEach(btn=>{
+    btn.addEventListener('click', ()=>document.getElementById('lead-modal')?.removeAttribute('hidden'));
+  });
+</script> 
