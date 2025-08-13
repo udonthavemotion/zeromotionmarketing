@@ -1,0 +1,144 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const base = "/pictures/web design page/";
+
+// Texture videos
+const TEX1 = "/assets/textures/199285-909903160_small.mp4";
+const TEX2 = "/assets/textures/188713-883612331_small.mp4";
+const TEX3 = "/assets/textures/9461-219710531_small.mp4";
+
+const HERO_VIDEO = TEX1;
+const MACHINE = base + "8machine-_-gCkv8mnmxm8-unsplash.jpg";
+const CARBON = base + "carbon fiber.jpg";
+const ADRIEN = base + "detail/pexels-adrien-olichon-1257089-2387793.jpg";
+
+const cssCarbon = `background-image:url("${CARBON}")`;
+const cssAdrien = `background-image:url("${ADRIEN}")`;
+
+const title = "Forefront of AI Integration — ZeroMotion | Houma & Thibodaux";
+const description = "ZeroMotion leads Houma & Thibodaux in AI-powered marketing—automations, CRM, chat, and reporting that convert. Local roots, global standards.";
+const ogImage = "/og-webdesign.png";
+---
+<BaseLayout {title} {description} {ogImage}>
+  <script type="application/ld+json">
+    {`
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Forefront of AI Integration",
+      "serviceType": "Marketing Automation & CRM",
+      "provider": {
+        "@type": "Organization",
+        "name": "ZeroMotion",
+        "url": "https://<YOUR-DOMAIN>"
+      },
+      "areaServed": ["Houma","Thibodaux","Bourg","Morgan City","New Orleans","Baton Rouge"],
+      "description": "AI‑powered automations, CRM, chat, and reporting that convert for Louisiana businesses.",
+      "sameAs": ["https://instagram.com/zeromotion","https://facebook.com/zeromotion"]
+    }
+    `}
+  </script>
+
+  <section class="hero">
+    <video src={HERO_VIDEO} autoplay muted loop playsinline poster={MACHINE}></video>
+    <div class="container-page">
+      <h1 class="h1">Forefront of AI Integration</h1>
+      <p class="sub">Built in Houma for Houma. We connect your website, ads, and inbox into one growth system—AI chat, automated follow‑ups, and a CRM that never forgets.</p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:18px">
+        <a class="btn" href="/#contact" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'AI Integration Contact'})">Let’s Build Your Automations</a>
+        <a class="btn ghost" href="#process" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'AI Integration Process'})">Our Process</a>
+      </div>
+      <div style="opacity:.7;margin-top:14px">Proudly serving Houma & Thibodaux • AI‑powered systems</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page">
+      <h2 class="h2">Our Mission: Put the Bayou on the Map</h2>
+      <p class="sub" style="margin-top:8px">
+        We believe Houma, Thibodaux, and the surrounding areas are stacked with talent and grit. Our job is to match that energy online—so local businesses look world‑class, sell faster, and scale smarter. With AI at the core, your brand doesn’t just look sharp—it works while you sleep.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style={`position:relative;isolation:isolate;overflow:hidden`}>
+    <video src={TEX2} autoplay muted loop playsinline preload="metadata" poster={ADRIEN} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:.6"></video>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.2) 40%,rgba(0,0,0,.6));z-index:0"></div>
+    <div class="grid-3 container-page" style="position:relative;z-index:1">
+      <div class="card">
+        <h3 class="h2">AI Lead Capture</h3>
+        <p>24/7 site chat and SMS that answers questions, books calls, and pushes leads into your pipeline.</p>
+      </div>
+      <div class="card">
+        <h3 class="h2">Automated Follow‑Up</h3>
+        <p>Instant replies, drip sequences, and missed‑call text‑back so no lead goes cold.</p>
+      </div>
+      <div class="card">
+        <h3 class="h2">CRM + Reporting</h3>
+        <p>GoHighLevel pipelines, reputation boosts, and dashboards that show what’s working in real time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style={`background:#0b0b0c`}>
+    <div class="container-page">
+      <h2 class="h2" style="margin-bottom:12px">Use Cases</h2>
+      <ul style="margin-top:8px;opacity:.9">
+        <li>Website chat + SMS/Email sequences</li>
+        <li>Lead routing to phone, inbox, and pipeline</li>
+        <li>Review generation & reputation management</li>
+        <li>Booking calendars and no‑show reduction</li>
+        <li>Weekly KPI snapshots to your email</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" style={`position:relative;isolation:isolate;overflow:hidden`}>
+    <video src={TEX3} autoplay muted loop playsinline preload="metadata" poster={CARBON} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:.6"></video>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.2) 40%,rgba(0,0,0,.6));z-index:0"></div>
+    <div class="container-page" style="position:relative;z-index:1">
+      <h2 class="h2" style="margin-bottom:18px">Recommended Stack</h2>
+      <div class="grid-3">
+        <div class="card"><strong>GoHighLevel</strong><br/>CRM & automations</div>
+        <div class="card"><strong>ChatGPT</strong><br/>Conversational AI</div>
+        <div class="card"><strong>Zapier/Make</strong><br/>Integrations</div>
+        <div class="card"><strong>Meta / Google / TikTok</strong><br/>Ads</div>
+        <div class="card"><strong>Calendars • Webhooks • Forms</strong><br/>Scheduling & data flow</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section" style={`position:relative;isolation:isolate;overflow:hidden`}>
+    <video src={TEX2} autoplay muted loop playsinline preload="metadata" poster={ADRIEN} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:.6"></video>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.2) 40%,rgba(0,0,0,.6));z-index:0"></div>
+    <div class="container-page" style="position:relative;z-index:1">
+      <h2 class="h2" style="margin-bottom:18px">Our Process</h2>
+      <div class="timeline">
+        <div class="card"><strong>1. Audit & Strategy</strong><br/>Map your funnel, gaps, and quick wins.</div>
+        <div class="card"><strong>2. Build & Connect</strong><br/>Chat, forms, calendars, and CRM pipelines wired.</div>
+        <div class="card"><strong>3. Messaging & Sequences</strong><br/>Scripts, SMS/email drips, missed‑call text‑back.</div>
+        <div class="card"><strong>4. Dashboards & QA</strong><br/>Reporting, alerts, and live testing.</div>
+        <div class="card"><strong>5. Go Live + Optimize</strong><br/>Weekly KPI review, iterate for ROI.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page">
+      <div class="card">
+        We build simple, fast systems that pay for themselves—by capturing more leads and closing them faster.
+      </div>
+      <div style="margin-top:18px">
+        <a class="btn cta" href="/#contact" onclick="window.dataLayer&&dataLayer.push({event:'cta_click',label:'AI Integration Contact Bottom'})">Let’s Build Your Automations</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page" style="text-align:center;opacity:.8">
+      Proudly serving Houma, Thibodaux, Bourg, Morgan City, New Orleans, and Baton Rouge.
+    </div>
+  </section>
+</BaseLayout>
+

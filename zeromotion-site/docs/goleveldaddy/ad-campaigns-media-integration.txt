@@ -1,0 +1,25 @@
+GoHighLevel (GHL) integration points — Ad Campaigns & Media
+
+Pre-launch
+- Create GHL pipeline: Ads → New Lead → Contacted → Booked → Won
+- Create form fields: name, business (optional), phone (required), email (optional), service (long text)
+- Auto SMS: trigger on new form submission; reply with “Thanks! We’ll text or call within 1 business day.”
+- Call connect workflow: during business hours, immediately dial internal number on new lead
+
+Embed on site
+- Endpoint: /api/lead (already present). Ensure serverless function forwards payload to GHL (Contacts + Pipeline)
+- Add hidden UTM fields if needed: utm_source, utm_campaign, gclid
+- Webhook: configure GHL webhook (fallback) to /api/lead for redundancy
+
+Tracking
+- GA4 via GTM: event form_submit, call_click, cta_click with labels for this page context
+- Microsoft Clarity: verify session recordings on /services/ad-campaigns-media
+
+Post-launch QA
+- Test form → GHL contact creation → pipeline stage → auto SMS sent
+- Verify weekly report sheet pulls from GHL exports (leads, CPL, calls)
+
+Notes
+- Respect SMS hours and opt-in rules
+- If GHL not available, send email via Resend as fallback
+

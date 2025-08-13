@@ -7,6 +7,7 @@ export interface Props {
 const { title = "ZeroMotion — AI‑Powered Web & Marketing for Houma & Thibodaux", description = "ZeroMotion leads Houma & Thibodaux into the digital future with AI websites, ads, and automation. Local roots. Global standards. Real results.", ogImage = "/favico/android-chrome-512x512.png" } = Astro.props as Props;
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 ---
 <html lang="en" class="bg-ink text-white">
   <head>
@@ -33,7 +34,6 @@ import Footer from "../components/Footer.astro";
       }
       html { scroll-behavior: smooth; }
     </style>
-    <link rel="stylesheet" href="/src/styles/global.css" />
     {import.meta.env.PUBLIC_GTM_ID && (
       <>
         <script is:inline>

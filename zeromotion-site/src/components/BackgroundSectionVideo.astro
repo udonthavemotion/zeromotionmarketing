@@ -1,0 +1,31 @@
+---
+export interface Props {
+  src: string;
+  poster?: string;
+  opacity?: number; // 0..1
+}
+const { src, poster, opacity = 0.35 } = Astro.props as Props;
+---
+<section class="relative isolate">
+  <video
+    class="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    aria-hidden="true"
+    poster={poster}
+    style={`opacity:${opacity};`}
+  >
+    <source src={src} type="video/mp4" />
+  </video>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-black/40 via-black/30 to-black/40"></div>
+  <slot />
+</section>
+<style is:global>
+  @media (prefers-reduced-motion: reduce) {
+    section[aria-hidden] { display: none; }
+  }
+</style>
+

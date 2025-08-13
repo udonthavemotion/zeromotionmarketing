@@ -1,8 +1,10 @@
-import React, { useMemo, useRef, useState, Suspense, useEffect } from "react";
+import * as React from "react";
+import { useMemo, useRef, useState, Suspense, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { MeshDistortMaterial, Line, Points, PointMaterial, Html, Float } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
+import { easing } from "maath"; // tiny helper for eased damp (installed with drei usually)
 
 // Util: reduced motion + webgl support
 const useReducedMotion = () => {
@@ -151,10 +153,74 @@ function WireframeKnot() {
   );
 }
 
-function CodeParticles() {
-  // Spherical cloud of points
-  const count = 1200;
-  const positions = useMemo(() => {
+function sampleTextToPoints(text: string, options?: { width?: number; height?: number; density?: number }) {
+  // Canvas-based sampler to get 2D points for text, then we add slight Z jitter later.
+  const w = options?.width ?? 800;
+  const h = options?.height ?? 220;
+  const density = options?.density ?? 0.16; // smaller = fewer points (perf lever)
+
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d")!;
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = "#fff";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  // Responsive font sizing
+  const base = Math.min(w, h);
+  ctx.font = `${Math.floor(base * 0.6)}px 'Inter', system-ui, -apple-system, sans-serif`;
+  ctx.fillText(text, w / 2, h / 2);
+
+  const img = ctx.getImageData(0, 0, w, h).data;
+  const pts: Float32Array[] = [];
+  const step = Math.max(1, Math.floor(1 / density));
+  for (let y = 0; y < h; y += step) {
+    for (let x = 0; x < w; x += step) {
+      const idx = (y * w + x) * 4;
+      const alpha = img[idx + 3];
+      if (alpha > 128) {
+        // center & scale to ~[-5..5] range
+        const nx = ((x - w / 2) / (w / 2)) * 5.0;
+        const ny = (-(y - h / 2) / (h / 2)) * 2.0; // flatter height for wide word
+        pts.push(new Float32Array([nx, ny, 0]));
+      }
+    }
+  }
+  return pts;
+}
+
+function ParticleMorph() {
+  const prefersReduced = useReducedMotion();
+  const [count, setCount] = useState(1200); // adapt on mobile for perf
+  const group = useRef<THREE.Points>(null!);
+
+  // State: whether we're showing text target
+  const [toText, setToText] = useState(false);
+
+  // UI + keybinding
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === "z") setToText((s) => !s);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // One-time mobile tuning: reduce particle count on small screens / low device memory
+  useEffect(() => {
+    try {
+      const dm = (navigator as any)?.deviceMemory ?? 4;
+      const w = window.innerWidth;
+      const isSmall = w <= 640;
+      const target = dm <= 3 || isSmall ? 800 : 1200;
+      setCount(target);
+    } catch {}
+  }, []);
+
+  // Source positions: spherical cloud
+  const cloudPositions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       const r = 6 + Math.random() * 6;
@@ -166,25 +232,76 @@ function CodeParticles() {
       arr.set([x, y, z], i * 3);
     }
     return arr;
-  }, []);
+  }, [count]);
 
-  const points = useRef<THREE.Points>(null!);
+  // Target positions: text “ZEROMOTION”
+  const textPositions = useMemo(() => {
+    // sample offscreen once
+    const pts = sampleTextToPoints("ZEROMOTION", { width: 900, height: 260, density: 0.18 });
+    // Distribute to `count` by cycling
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const p = pts[i % pts.length];
+      // add a tiny z jitter so it's not perfectly flat
+      const z = (Math.random() - 0.5) * 0.6;
+      arr.set([p[0], p[1], z], i * 3);
+    }
+    return arr;
+  }, [count]);
+
+  // Current buffer we animate into
+  const positions = useMemo(() => new Float32Array(cloudPositions), [cloudPositions]);
+  const targetRef = useRef<"cloud" | "text">("cloud");
+
+  // Animate between buffers with easing
   useFrame((_s, d) => {
-    if (!points.current) return;
-    points.current.rotation.y += d * 0.02;
+    if (!group.current || prefersReduced) return;
+
+    const target = targetRef.current === "text" ? textPositions : cloudPositions;
+    const pos = group.current.geometry.getAttribute("position") as THREE.BufferAttribute;
+    // Smoothly “damp” each coordinate toward target
+    for (let i = 0; i < pos.array.length; i++) {
+      // maath easing.damp() works on numbers, we’ll just lerp manually for perf:
+      positions[i] = THREE.MathUtils.damp(positions[i], target[i], 4.0, d);
+    }
+    pos.array.set(positions);
+    pos.needsUpdate = true;
+
+    // slow rotation for life
+    group.current.rotation.y += d * 0.02;
   });
 
+  // Flip target on toggle
+  useEffect(() => {
+    targetRef.current = toText ? "text" : "cloud";
+  }, [toText]);
+
   return (
-    <Points ref={points} positions={positions} stride={3}>
-      <PointMaterial
-        size={0.03}
-        transparent
-        vertexColors={false}
-        color={"#A78BFA"}
-        depthWrite={false}
-        opacity={0.75}
-      />
-    </Points>
+    <>
+      <Points ref={group} positions={positions} stride={3}>
+        <PointMaterial size={0.03} transparent depthWrite={false} opacity={0.78} color={"#A78BFA"} />
+      </Points>
+
+      {/* UI Toggle (outside WebGL but overlaid via Html) */}
+      <Html position={[0, 0, 0]} transform={false} zIndexRange={[20, 0]}>
+        <div
+          className="pointer-events-auto fixed right-4 bottom-4"
+          style={{
+            paddingRight: "calc(env(safe-area-inset-right, 0px) + 0px)",
+            paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0px)",
+          }}
+        >
+          <button
+            onClick={() => setToText((s) => !s)}
+            className="text-[12px] md:text-[11px] tracking-wide text-white/80 bg-white/5 hover:bg-white/10 transition-colors px-3.5 py-2 md:px-3 md:py-1.5 rounded-full ring-1 ring-white/10"
+            aria-pressed={toText}
+            aria-label="Toggle ZeroMotion particle morph"
+          >
+            {toText ? "Back to Particles • Z" : "Easter Egg • Z"}
+          </button>
+        </div>
+      </Html>
+    </>
   );
 }
 
@@ -238,10 +355,10 @@ const Scene: React.FC<{ intensity: number }> = ({ intensity }) => {
         <WireframeKnot />
         <Nucleus />
         <OrbitingElectrons count={4} />
-        <CodeParticles />
+        <ParticleMorph />
         <Hud />
       </group>
-      <EffectComposer disableNormalPass multisampling={4}>
+      <EffectComposer enableNormalPass={false} multisampling={4}>
         <Bloom intensity={0.7 * intensity} luminanceThreshold={0.2} luminanceSmoothing={0.15} />
         <Vignette eskil={false} offset={0.2} darkness={0.5} />
       </EffectComposer>

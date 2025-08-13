@@ -1,0 +1,12 @@
+---
+export interface Props { q: string; a: string }
+const { q, a } = Astro.props as Props;
+---
+<details class="rounded-xl border border-white/10 bg-white/5 p-4 group">
+  <summary class="cursor-pointer list-none marker:hidden flex items-center justify-between" aria-label={q}>
+    <span class="font-medium">{q}</span>
+    <span class="text-white/60 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+  </summary>
+  <p class="subtle" style="margin-top:6px">{a}</p>
+</details>
+

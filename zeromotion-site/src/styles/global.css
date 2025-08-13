@@ -45,7 +45,11 @@ img { image-rendering: auto; }
 .wordmark-glow { box-shadow: 0 0 60px rgba(110,0,255,0.25), 0 0 160px rgba(75,0,255,0.18); }
 
 /* Reduce CLS for images */
-img[width][height] { height: auto; }
+/* Do not interfere with absolutely positioned cover media inside cards */
+img[width][height]:not(.absolute) { height: auto; }
+/* Ensure background/cover media truly fill their containers */
+img.absolute.object-cover,
+video.absolute.object-cover { height: 100%; width: 100%; }
 
 /* Reveal on scroll */
 .reveal { opacity: 0.92; transform: translateY(8px) scale(0.995); transition: opacity 200ms ease, transform 200ms ease; }
