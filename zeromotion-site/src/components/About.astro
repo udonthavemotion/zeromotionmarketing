@@ -1,11 +1,13 @@
 ---
 const img = "/brand/ZeroMotion-Layerstyle.png";
+import QuantumShowcase from "./QuantumShowcase";
 ---
 <section id="about" class="section-padding reveal" aria-labelledby="about-title">
   <div class="container-page grid md:grid-cols-2 gap-8 items-stretch">
-    <div class="relative rounded-2xl overflow-hidden border border-white/10 min-h-[260px] sm:min-h-[320px] lg:min-h-[420px] flex items-center justify-center" aria-hidden="true">
-      <div class="absolute inset-0 bg-no-repeat bg-center bg-contain" style={`background-image:url('${img}'); background-size:contain; background-position:center 60%; background-repeat:no-repeat; background-color:black; will-change:transform;`} id="about-parallax"></div>
-      <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative" aria-hidden="true">
+      <div class="aspect-[4/5] sm:aspect-[16/10] lg:aspect-[21/9]">
+        <QuantumShowcase client:load className="w-full h-full" intensity={1.1} />
+      </div>
     </div>
     <div class="flex flex-col justify-center">
       <h2 id="about-title" class="h2 mb-4">Minimalism. Functionality. Precision.</h2>
@@ -15,19 +17,4 @@ const img = "/brand/ZeroMotion-Layerstyle.png";
     </div>
   </div>
 </section>
-<script>
-  const elRef = document.getElementById('about-parallax');
-  if(elRef instanceof HTMLElement){
-    const target = elRef;
-    let ticking = false;
-    function onScroll(){
-      if(ticking) return; ticking = true;
-      requestAnimationFrame(()=>{
-        const y = window.scrollY || 0;
-        target.style.transform = `translateY(${Math.round(y * -0.05)}px)`;
-        ticking = false;
-      });
-    }
-    document.addEventListener('scroll', onScroll, { passive: true });
-  }
-</script> 
+<!-- Removed previous parallax image block in favor of interactive 3D showcase -->
