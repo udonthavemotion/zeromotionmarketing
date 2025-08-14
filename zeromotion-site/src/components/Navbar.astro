@@ -1,6 +1,7 @@
 ---
 const links = [
   { href: '/', label: 'Home' },
+  { href: '/ad-campaigns', label: 'Ad Campaigns' },
   { href: '/#about', label: 'About' },
   { href: '/#contact', label: 'Contact' },
 ];
@@ -9,7 +10,7 @@ const links = [
   <nav class="container-page flex items-center justify-between h-14">
     <div class="hidden md:flex items-center gap-6" aria-label="Primary">
       {links.map((l) => (
-        <a href={l.href} class="text-sm text-white/80 hover:text-white" >{l.label}</a>
+        <a href={l.href} class="text-sm text-white/80 hover:text-white" aria-current={Astro.url.pathname===l.href? 'page': undefined}>{l.label}</a>
       ))}
       <div class="relative group">
         <button class="text-sm text-white/80 hover:text-white inline-flex items-center gap-1" aria-haspopup="menu" aria-expanded="false">
@@ -19,7 +20,6 @@ const links = [
         <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition pointer-events-none group-hover:pointer-events-auto absolute left-0 mt-3 w-56 rounded-xl border border-white/10 bg-[#0B0B0B] p-2">
           <a href="/services/web-design" class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white">Web Design</a>
           <a href="/services/brand-identity" class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white">Brand & Identity</a>
-          <a href="/services/ad-campaigns-media" class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white">Ad Campaigns & Media</a>
           <a href="/services/ai-integration" class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white">AI Integration</a>
         </div>
       </div>
@@ -33,11 +33,10 @@ const links = [
   <div id="mobile-menu" hidden class="md:hidden border-t border-white/10">
     <div class="container-page py-4 flex flex-col gap-3">
       {links.map((l) => (
-        <a href={l.href} class="text-sm text-white/90 py-2">{l.label}</a>
+        <a href={l.href} class="text-sm text-white/90 py-2" aria-current={Astro.url.pathname===l.href? 'page': undefined}>{l.label}</a>
       ))}
       <a href="/services/web-design" class="text-sm text-white/90 py-2">Web Design</a>
       <a href="/services/brand-identity" class="text-sm text-white/90 py-2">Brand & Identity</a>
-      <a href="/services/ad-campaigns-media" class="text-sm text-white/90 py-2">Ad Campaigns & Media</a>
       <a href="/services/ai-integration" class="text-sm text-white/90 py-2">AI Integration</a>
       <a href="/#services" class="btn-primary">Get Started</a>
     </div>

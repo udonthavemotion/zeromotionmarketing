@@ -1,28 +1,19 @@
 ---
+import TransparentLogo from "./TransparentLogo.astro";
+import HeroInteractive from "./HeroInteractive.tsx";
 ---
-<section id="hero" class="relative isolate overflow-hidden bg-black h-[90vh] min-h-[560px] grid place-items-center" aria-labelledby="hero-title">
-  <video class="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover blur-[1px] brightness-[0.45]" autoplay muted loop playsinline preload="metadata">
+<section id="hero" class="relative isolate overflow-hidden bg-black min-h-[70svh] sm:min-h-[78svh] grid place-items-center" aria-labelledby="hero-title">
+  <video class="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover brightness-[0.45]" autoplay muted loop playsinline preload="metadata">
     <source src="/assets/textures/36471-410610193_small.mp4" type="video/mp4" />
   </video>
   <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-black/80 via-transparent to-black/60"></div>
-  <div class="relative container-page text-center space-y-6">
-    <div class="mx-auto w-auto inline-flex items-center justify-center">
-      <video
-        class="w-auto mx-auto drop-shadow h-[34vh] sm:h-[40vh] md:h-[48vh] lg:h-[56vh] max-w-[90vw]"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        aria-label="ZeroMotion spinning logo"
-      >
-        <source src="/brand/ZeroMotion-Transparent-OBS-v2.webm" type="video/webm" />
-      </video>
-    </div>
+  <div class="relative container-page text-center">
+    <TransparentLogo class="mx-auto mb-4 h-16 sm:h-24" />
     <h1 id="hero-title" class="h1">Precision in Motion.</h1>
-    <p class="text-white/85 max-w-xl mx-auto">ZeroMotion leads Houma & Thibodaux into the digital future — AI‑powered websites, ads, and automation built to convert.</p>
-    <div>
+    <p class="text-white/85 max-w-xl mx-auto mt-3">ZeroMotion leads Houma & Thibodaux into the digital future — AI‑powered websites, ads, and automation built to convert.</p>
+    <HeroInteractive client:visible />
+    <div class="mt-6">
       <a href="#services" class="btn-primary">Get Started</a>
     </div>
   </div>
-</section> 
+</section>

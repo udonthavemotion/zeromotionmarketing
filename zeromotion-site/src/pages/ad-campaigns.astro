@@ -1,11 +1,11 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import MiniStat from "./ad-campaigns-media/_components/MiniStat.astro";
-import PricingCard from "./ad-campaigns-media/_components/PricingCard.astro";
-import FAQItem from "./ad-campaigns-media/_components/FAQItem.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MiniStat from "./services/ad-campaigns-media/_components/MiniStat.astro";
+import PricingCard from "./services/ad-campaigns-media/_components/PricingCard.astro";
+import FAQItem from "./services/ad-campaigns-media/_components/FAQItem.astro";
 
-const title = "Ad Campaigns & Media | ZeroMotion";
-const description = "We run ROI-driven ads across Meta, Google, and TikTok so your service gets seen by the right people at the right time.";
+const title = "Ad Campaigns — ZeroMotion";
+const description = "AI‑first ad campaigns across Meta, Google, and TikTok that put your service in front of ready‑to‑buy locals.";
 const ogImage = "/og-webdesign.png";
 ---
 <BaseLayout {title} {description} {ogImage}>
@@ -184,6 +184,8 @@ const ogImage = "/og-webdesign.png";
 </BaseLayout>
 
 <!--
+TODO: content (copy/creative/case studies)
+data-cms-key="ads-page"
 Performance checklist
 - Uses existing typography and spacing via global.css
 - Images lazy-loaded; zero CLS

@@ -1,0 +1,29 @@
+---
+interface Props { class?: string }
+const { class: cls = "" } = Astro.props as Props;
+---
+<div data-logo class={`inline-block ${cls}`}>
+  <video
+    src="/brand/ZeroMotion-Transparent-OBS-v2.webm"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    class="h-full w-auto"
+    aria-label="ZeroMotion animated logo"
+    poster="/brand/ZeroMotion-Outline.png"
+  >
+  </video>
+  <noscript>
+    <img src="/brand/ZeroMotion-Outline.png" alt="ZeroMotion logo" class="h-full w-auto" />
+  </noscript>
+</div>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    [data-logo] video { display: none; }
+  }
+</style>
+
+

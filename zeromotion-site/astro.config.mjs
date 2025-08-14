@@ -3,11 +3,12 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
-import vercel from '@astrojs/vercel';
+// vercel adapter is only needed for server output on Vercel
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: vercel(),
+  // Local build: static for fast, portable output
+  output: 'static',
   vite: {
     plugins: [tailwindcss()]
   },
