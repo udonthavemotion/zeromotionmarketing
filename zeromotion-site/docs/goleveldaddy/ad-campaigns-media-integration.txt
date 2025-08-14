@@ -23,3 +23,4 @@ Notes
 - Respect SMS hours and opt-in rules
 - If GHL not available, send email via Resend as fallback
 
+
