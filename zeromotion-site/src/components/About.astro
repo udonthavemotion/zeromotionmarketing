@@ -2,18 +2,47 @@
 const img = "/brand/ZeroMotion-Layerstyle.png";
 import QuantumShowcase from "./QuantumShowcase";
 ---
-<section id="about" class="section-padding reveal" aria-labelledby="about-title">
-  <div class="container-page grid md:grid-cols-2 md:[grid-template-columns:1.4fr_0.9fr] gap-12 xl:gap-16 items-stretch">
-    <div class="relative z-0" aria-hidden="true">
-      <div class="aspect-[4/5] sm:aspect-[16/10] lg:aspect-[16/9] min-h-[260px] sm:min-h-[320px] lg:min-h-[420px] xl:min-h-[500px]">
-        <QuantumShowcase client:load className="w-full h-full" intensity={1.1} />
+
+<section
+  id="about"
+  class="section-padding reveal"
+  aria-labelledby="about-title"
+>
+  <div
+    class="container-page grid md:[grid-template-columns:1.35fr_1fr] gap-8 lg:gap-12 xl:gap-16 items-stretch"
+  >
+    <div class="relative z-0 md:pr-2 lg:pr-4" aria-hidden="true">
+      <div
+        class="aspect-[4/5] sm:aspect-[16/10] lg:aspect-[16/9] min-h-[260px] sm:min-h-[320px] lg:min-h-[400px] xl:min-h-[460px]"
+      >
+        <QuantumShowcase
+          client:visible
+          className="w-full h-full"
+          intensity={1.1}
+        />
       </div>
     </div>
-    <div class="relative z-10 flex flex-col justify-center md:pl-10 lg:pl-20 xl:pl-24 max-w-[48ch] ml-auto">
-      <h2 id="about-title" class="h2 mb-4">Minimalism. Functionality. Precision.</h2>
-      <p class="text-white/85 text-lg mb-4">We believe Houma, Thibodaux, and every town around us are packed with talent, grit, and potential. The only thing missing? A digital presence to match it.</p>
-      <p class="text-white/85 text-lg mb-4">We design clean, timeless brands and high-performance web experiences that move with intent — from identity to interface to impression.</p>
-      <p class="text-white/80">This is the moment to step forward. To take the skills, the stories, and the hustle of our community and put them where the world can see them. We keep the stack lean, the UX elegant, and the speed uncompromised — so your brand isn’t just seen, it’s remembered.</p>
+    <div
+      class="relative z-10 flex flex-col justify-center md:pl-6 lg:pl-10 xl:pl-14 max-w-[48ch] ml-auto"
+    >
+      <h2 id="about-title" class="h2 mb-4">
+        Minimalism. Functionality. Precision.
+      </h2>
+      <p class="text-white/85 text-lg mb-4">
+        We believe Houma, Thibodaux, and every town around us are packed with
+        talent, grit, and potential. The only thing missing? A digital presence
+        to match it.
+      </p>
+      <p class="text-white/85 text-lg mb-4">
+        We design clean, timeless brands and high-performance web experiences
+        that move with intent — from identity to interface to impression.
+      </p>
+      <p class="text-white/80">
+        This is the moment to step forward. To take the skills, the stories, and
+        the hustle of our community and put them where the world can see them.
+        We keep the stack lean, the UX elegant, and the speed uncompromised — so
+        your brand isn’t just seen, it’s remembered.
+      </p>
     </div>
   </div>
 </section>

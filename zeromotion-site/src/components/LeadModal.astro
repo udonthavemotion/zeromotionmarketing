@@ -1,36 +1,67 @@
 ---
 const niches = ["Contractor", "Real Estate"] as const;
 ---
-<div id="lead-modal" hidden role="dialog" aria-modal="true" aria-labelledby="lead-title" class="fixed inset-0 z-[60] grid place-items-center p-4 bg-black/60">
+
+<div
+  id="lead-modal"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="lead-title"
+  class="fixed inset-0 z-[60] grid place-items-center p-4 bg-black/60"
+>
   <div class="card max-w-xl w-full p-6 bg-ink">
     <div class="flex items-center justify-between mb-4">
       <h3 id="lead-title" class="h3">Free Local Audit</h3>
-      <button class="btn-ghost px-2 py-1" aria-label="Close" data-close>✕</button>
+      <button class="btn-ghost px-2 py-1" aria-label="Close" data-close
+        >✕</button
+      >
     </div>
     <form method="post" action="/api/lead" class="grid gap-4" id="lead-form">
       <div class="grid md:grid-cols-2 gap-3">
         <label class="grid gap-2">
           <span class="text-sm text-white/70">Name</span>
-          <input name="name" required class="bg-white/5 border border-white/10 rounded-xl px-3 py-2" />
+          <input
+            name="name"
+            required
+            class="bg-white/5 border border-white/10 rounded-xl px-3 py-2"
+          />
         </label>
         <label class="grid gap-2">
           <span class="text-sm text-white/70">Email</span>
-          <input type="email" name="email" required class="bg-white/5 border border-white/10 rounded-xl px-3 py-2" />
+          <input
+            type="email"
+            name="email"
+            required
+            class="bg-white/5 border border-white/10 rounded-xl px-3 py-2"
+          />
         </label>
       </div>
       <label class="grid gap-2">
         <span class="text-sm text-white/70">Business</span>
-        <input name="business" required class="bg-white/5 border border-white/10 rounded-xl px-3 py-2" />
+        <input
+          name="business"
+          required
+          class="bg-white/5 border border-white/10 rounded-xl px-3 py-2"
+        />
       </label>
       <label class="grid gap-2">
         <span class="text-sm text-white/70">Niche</span>
-        <select name="niche" required class="bg-white/5 border border-white/10 rounded-xl px-3 py-2">
-          {niches.map((n) => (<option value={n}>{n}</option>))}
+        <select
+          name="niche"
+          required
+          class="bg-white/5 border border-white/10 rounded-xl px-3 py-2"
+        >
+          {niches.map((n) => <option value={n}>{n}</option>)}
         </select>
       </label>
       <label class="grid gap-2">
         <span class="text-sm text-white/70">Message</span>
-        <textarea name="message" rows="4" class="bg-white/5 border border-white/10 rounded-xl px-3 py-2"></textarea>
+        <textarea
+          name="message"
+          rows="4"
+          class="bg-white/5 border border-white/10 rounded-xl px-3 py-2"
+        ></textarea>
       </label>
       <div class="flex items-center justify-end gap-3">
         <button type="button" class="btn-ghost" data-close>Cancel</button>
@@ -40,27 +71,53 @@ const niches = ["Contractor", "Real Estate"] as const;
   </div>
 </div>
 <script>
-  const modal = document.getElementById('lead-modal');
-  const form = document.getElementById('lead-form');
-  function close(){ modal?.setAttribute('hidden',''); document.body.style.removeProperty('overflow'); }
-  modal?.addEventListener('click', (e)=>{ if(e.target === modal) close(); });
-  modal?.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click', close));
+  const modal = document.getElementById("lead-modal");
+  const form = document.getElementById("lead-form");
+  function close() {
+    modal?.setAttribute("hidden", "");
+    document.body.style.removeProperty("overflow");
+  }
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) close();
+  });
+  modal
+    ?.querySelectorAll("[data-close]")
+    .forEach((b) => b.addEventListener("click", close));
   // Focus trap
-  const focusable = 'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])';
-  modal?.addEventListener('keydown', (e)=>{
-    if(e.key !== 'Tab') return;
+  const focusable =
+    'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])';
+  modal?.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
     const nodes = modal.querySelectorAll(focusable);
-    if(!nodes.length) return;
-    const first = nodes[0] as HTMLElement; const last = nodes[nodes.length-1] as HTMLElement;
-    if(e.shiftKey && document.activeElement === first){ last.focus(); e.preventDefault(); }
-    else if(!e.shiftKey && document.activeElement === last){ first.focus(); e.preventDefault(); }
+    if (!nodes.length) return;
+    const first = nodes[0] as HTMLElement;
+    const last = nodes[nodes.length - 1] as HTMLElement;
+    if (e.shiftKey && document.activeElement === first) {
+      last.focus();
+      e.preventDefault();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      first.focus();
+      e.preventDefault();
+    }
   });
   // Submit via fetch to avoid full reload
-  form?.addEventListener('submit', async (e)=>{
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(form as HTMLFormElement).entries());
-    const res = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-    if(res.ok){ close(); alert('Thanks — we\'ll be in touch.'); (form as HTMLFormElement).reset(); }
-    else { alert('Something went wrong. Try again later.'); }
+    const data = Object.fromEntries(
+      new FormData(form as HTMLFormElement).entries(),
+    );
+    const res = await fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+      close();
+      alert("Thanks — we'll be in touch.");
+      (form as HTMLFormElement).reset();
+    } else {
+      alert("Something went wrong. Try again later.");
+    }
   });
-</script> 
+</script>
+

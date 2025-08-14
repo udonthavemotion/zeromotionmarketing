@@ -1,29 +1,69 @@
 ---
-interface Props { class?: string }
+interface Props {
+  class?: string;
+}
 const { class: cls = "" } = Astro.props as Props;
 ---
+
 <div data-logo class={`inline-block ${cls}`}>
   <video
-    src="/brand/ZeroMotion-Transparent-OBS-v2.webm"
     autoplay
     muted
     loop
     playsinline
     preload="metadata"
-    class="h-full w-auto"
+    class="h-full w-auto drop-shadow-[0_0_60px_rgba(110,0,255,0.35)]"
     aria-label="ZeroMotion animated logo"
-    poster="/brand/ZeroMotion-Outline.png"
   >
+    <source src="/brand/ZeroMotion-Transparent-OBS-v2.webm" type="video/webm" />
   </video>
+  <img
+    data-fallback
+    src="/brand/ZeroMotion-Outline.png"
+    alt="ZeroMotion logo"
+    class="h-full w-auto"
+    style="display:none"
+  />
   <noscript>
-    <img src="/brand/ZeroMotion-Outline.png" alt="ZeroMotion logo" class="h-full w-auto" />
+    <img
+      src="/brand/ZeroMotion-Outline.png"
+      alt="ZeroMotion logo"
+      class="h-full w-auto"
+    />
   </noscript>
+  <script is:inline>
+    (function(){
+      try{
+        var v = document.currentScript?.previousElementSibling?.previousElementSibling;
+        var img = document.currentScript?.previousElementSibling?.previousElementSibling?.nextElementSibling;
+        // If cannot play webm, or on iOS (no webm), use fallback image
+        var video = v && v.tagName === 'VIDEO' ? v : document.querySelector('[data-logo] video');
+        var fallback = img && img.getAttribute ? img : document.querySelector('[data-logo] [data-fallback]');
+        var canPlay = !!(video && video.canPlayType && video.canPlayType('video/webm'));
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        if(!canPlay || isIOS){
+          if(video){ video.style.display = 'none'; }
+          if(fallback){ fallback.style.display = 'inline-block'; }
+        }
+      }catch(e){ /* no-op */ }
+    })();
+  </script>
 </div>
 
 <style>
   @media (prefers-reduced-motion: reduce) {
-    [data-logo] video { display: none; }
+    [data-logo] video {
+      display: none;
+    }
+  }
+  /* Ensure transparent background for the video element */
+  [data-logo] video {
+    background-color: transparent;
+  }
+  /* Mobile: simulate transparency where alpha video isn't supported (iOS Safari) */
+  @media (max-width: 768px) {
+    [data-logo] video {
+      mix-blend-mode: screen;
+    }
   }
 </style>
-
-

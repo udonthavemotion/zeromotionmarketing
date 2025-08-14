@@ -1,0 +1,71 @@
+{
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "Clear-Site-Data", "value": "\"cache\"" }
+      ]
+    },
+    {
+      "source": "/services/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "Clear-Site-Data", "value": "\"cache\"" }
+      ]
+    },
+    {
+      "source": "/ad-campaigns",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "Clear-Site-Data", "value": "\"cache\"" }
+      ]
+    },
+    {
+      "source": "/privacy",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "Clear-Site-Data", "value": "\"cache\"" }
+      ]
+    },
+    {
+      "source": "/terms",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "Clear-Site-Data", "value": "\"cache\"" }
+      ]
+    },
+    {
+      "source": "/photos/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/brand/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/favico/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/pictures/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}
+
+

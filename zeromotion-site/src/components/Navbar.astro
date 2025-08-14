@@ -1,53 +1,159 @@
 ---
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/ad-campaigns', label: 'Ad Campaigns' },
-  { href: '/#about', label: 'About' },
-  { href: '/#contact', label: 'Contact' },
+  { href: "/", label: "Home" },
+  { href: "/ad-campaigns", label: "Ad Campaigns" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ];
 ---
-<header class="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-black/50 bg-black/70 border-b border-white/10 isolate">
+
+<header
+  class="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-black/50 bg-black/70 border-b border-white/10 isolate"
+>
   <nav class="container-page flex items-center justify-between h-14">
     <div class="hidden md:flex items-center gap-6" aria-label="Primary">
-      {links.map((l) => (
-        <a href={l.href} class="text-sm text-white/80 hover:text-white" aria-current={Astro.url.pathname===l.href? 'page': undefined}>{l.label}</a>
-      ))}
-      <div class="relative group">
-        <button class="text-sm text-white/80 hover:text-white inline-flex items-center gap-1" aria-haspopup="menu" aria-expanded="false">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="text-sm text-white/80 hover:text-white"
+            aria-current={Astro.url.pathname === l.href ? "page" : undefined}
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <div class="nav-item group relative" data-dropdown="services">
+        <button
+          class="text-sm text-white/80 hover:text-white inline-flex items-center gap-1 nav-link"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="services-menu"
+          data-dd-trigger="services"
+        >
           Services
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <svg aria-hidden="true" class="h-4 w-4 chev"
+            ><path
+              d="M6 9l6 6 6-6"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"></path></svg
+          >
         </button>
-        <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition pointer-events-none group-hover:pointer-events-auto absolute left-0 mt-3 w-56 rounded-xl border border-white/10 bg-[#0B0B0B] p-2">
-          <a href="/services/web-design" class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white">Web Design</a>
-          <a href="/services/brand-identity" class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white">Brand & Identity</a>
-          <a href="/services/ai-integration" class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white">AI Integration</a>
+
+        <div
+          id="services-menu"
+          role="menu"
+          aria-label="Services"
+          class="dd-panel invisible opacity-0 scale-95 pointer-events-none absolute left-0 top-full mt-2 w-64 rounded-2xl shadow-xl border border-white/10 bg-[#0B0B0B] p-2"
+          data-dd-panel="services"
+        >
+          <ul class="py-1" data-dd-list>
+            <li>
+              <a
+                href="/services/web-design"
+                class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white dd-item"
+                role="menuitem"
+                tabindex="-1">Web Design</a>
+            </li>
+            <li>
+              <a
+                href="/services/brand-identity"
+                class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white dd-item"
+                role="menuitem"
+                tabindex="-1">Brand &amp; Identity</a>
+            </li>
+            <li>
+              <a
+                href="/ad-campaigns"
+                class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white dd-item"
+                role="menuitem"
+                tabindex="-1">Ad Campaigns &amp; Media</a>
+            </li>
+            <li>
+              <a
+                href="/services/ai-integration"
+                class="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white dd-item"
+                role="menuitem"
+                tabindex="-1">AI Integration</a>
+            </li>
+          </ul>
         </div>
       </div>
       <a href="/#services" class="btn-primary">Get Started</a>
     </div>
 
-    <button class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg hover:bg-white/5 border border-white/10" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu" id="nav-toggle">
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <button
+      class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg hover:bg-white/5 border border-white/10"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Toggle menu"
+      id="nav-toggle"
+    >
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"
+        ><path
+          d="M4 6h16M4 12h16M4 18h16"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"></path></svg
+      >
     </button>
   </nav>
   <div id="mobile-menu" hidden class="md:hidden border-t border-white/10">
     <div class="container-page py-4 flex flex-col gap-3">
-      {links.map((l) => (
-        <a href={l.href} class="text-sm text-white/90 py-2" aria-current={Astro.url.pathname===l.href? 'page': undefined}>{l.label}</a>
-      ))}
-      <a href="/services/web-design" class="text-sm text-white/90 py-2">Web Design</a>
-      <a href="/services/brand-identity" class="text-sm text-white/90 py-2">Brand & Identity</a>
-      <a href="/services/ai-integration" class="text-sm text-white/90 py-2">AI Integration</a>
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="text-sm text-white/90 py-2"
+            aria-current={Astro.url.pathname === l.href ? "page" : undefined}
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a href="/services/web-design" class="text-sm text-white/90 py-2"
+        >Web Design</a
+      >
+      <a href="/services/brand-identity" class="text-sm text-white/90 py-2"
+        >Brand &amp; Identity</a
+      >
+      <a href="/ad-campaigns" class="text-sm text-white/90 py-2"
+        >Ad Campaigns &amp; Media</a
+      >
+      <a href="/services/ai-integration" class="text-sm text-white/90 py-2"
+        >AI Integration</a
+      >
       <a href="/#services" class="btn-primary">Get Started</a>
     </div>
   </div>
   <script>
-    const btn = document.getElementById('nav-toggle');
-    const menu = document.getElementById('mobile-menu');
-    function closeOnEscape(e: KeyboardEvent){ if(e.key==='Escape'){ hide(); (btn as HTMLButtonElement | null)?.focus(); } }
-    function hide(){ menu?.setAttribute('hidden',''); document.body.style.removeProperty('overflow'); btn?.setAttribute('aria-expanded','false'); document.removeEventListener('keydown', closeOnEscape as any); }
-    function show(){ menu?.removeAttribute('hidden'); document.body.style.overflow='hidden'; btn?.setAttribute('aria-expanded','true'); document.addEventListener('keydown', closeOnEscape as any); }
-    btn?.addEventListener('click', () => { menu?.hasAttribute('hidden') ? show() : hide(); });
-    menu?.querySelectorAll('a').forEach(a=>a.addEventListener('click', hide));
+    const btn = document.getElementById("nav-toggle");
+    const menu = document.getElementById("mobile-menu");
+    function closeOnEscape(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        hide();
+        (btn as HTMLButtonElement | null)?.focus();
+      }
+    }
+    function hide() {
+      menu?.setAttribute("hidden", "");
+      document.body.style.removeProperty("overflow");
+      btn?.setAttribute("aria-expanded", "false");
+      document.removeEventListener("keydown", closeOnEscape as any);
+    }
+    function show() {
+      menu?.removeAttribute("hidden");
+      document.body.style.overflow = "hidden";
+      btn?.setAttribute("aria-expanded", "true");
+      document.addEventListener("keydown", closeOnEscape as any);
+    }
+    btn?.addEventListener("click", () => {
+      menu?.hasAttribute("hidden") ? show() : hide();
+    });
+    menu
+      ?.querySelectorAll("a")
+      .forEach((a) => a.addEventListener("click", hide));
   </script>
-</header> 
+</header>
+

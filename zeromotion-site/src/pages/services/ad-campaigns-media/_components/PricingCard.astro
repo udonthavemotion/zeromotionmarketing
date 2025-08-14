@@ -8,17 +8,31 @@ export interface Props {
 }
 const { name, price, features, note, highlight } = Astro.props as Props;
 ---
-<div class="card group" style="padding:20px;display:flex;flex-direction:column;gap:10px;position:relative;transition:transform .15s ease">
-  {highlight && (
-    <span class="absolute -top-2 left-3 text-xs" style="background:rgba(124,58,237,.25);color:#E9D5FF;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.1)">{highlight}</span>
-  )}
+
+<div
+  class="card group"
+  style="padding:20px;display:flex;flex-direction:column;gap:10px;position:relative;transition:transform .15s ease"
+>
+  {
+    highlight && (
+      <span
+        class="absolute -top-2 left-3 text-xs"
+        style="background:rgba(124,58,237,.25);color:#E9D5FF;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.1)"
+      >
+        {highlight}
+      </span>
+    )
+  }
   <h3 class="h3">{name}</h3>
   <div class="text-3xl font-semibold">{price}</div>
-  {note && (<p class="subtle">{note}</p>)}
+  {note && <p class="subtle">{note}</p>}
   <ul class="subtle" style="display:grid;gap:6px">
-    {features.map((f) => (<li>• {f}</li>))}
+    {features.map((f) => <li>• {f}</li>)}
   </ul>
-  <a class="btn-primary" href="#start" style="margin-top:auto">Start</a>
+  <a
+    class="btn-primary"
+    href="#lead"
+    data-cta="pricing_start"
+    style="margin-top:auto">Start</a
+  >
 </div>
-
-

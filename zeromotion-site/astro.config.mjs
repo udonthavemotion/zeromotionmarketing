@@ -1,17 +1,19 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
-import react from '@astrojs/react';
-// vercel adapter is only needed for server output on Vercel
+import tailwindcss from "@tailwindcss/vite";
+import react from "@astrojs/react";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  // Local build: static for fast, portable output
-  output: 'static',
+  // Use server output because the project includes API routes under `src/pages/api/*`.
+  // This enables serverless functions on Vercel.
+  output: "server",
+  adapter: vercel({}),
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
 
-  integrations: [react()]
+  integrations: [react()],
 });

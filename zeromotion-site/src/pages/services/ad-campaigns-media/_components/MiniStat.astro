@@ -1,13 +1,17 @@
 ---
-export interface Props { value: string; label: string }
+export interface Props {
+  value: string;
+  label: string;
+}
 const { value, label } = Astro.props as Props;
 ---
+
 <div class="rounded-xl border border-white/10 bg-white/5 p-4">
   <div class="text-3xl font-semibold" style="color:#C4B5FD">{value}</div>
   <div class="subtle" style="margin-top:4px;font-size:12px">{label}</div>
   <style>
-    :host(:hover) .text-3xl { text-shadow: 0 0 24px rgba(124,58,237,0.35); }
+    :host(:hover) .text-3xl {
+      text-shadow: 0 0 24px rgba(124, 58, 237, 0.35);
+    }
   </style>
 </div>
-
-

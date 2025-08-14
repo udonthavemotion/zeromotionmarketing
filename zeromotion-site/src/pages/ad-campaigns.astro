@@ -1,118 +1,353 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import MiniStat from "./services/ad-campaigns-media/_components/MiniStat.astro";
 import PricingCard from "./services/ad-campaigns-media/_components/PricingCard.astro";
 import FAQItem from "./services/ad-campaigns-media/_components/FAQItem.astro";
 
+// Forefront-style textured backgrounds
+const TEX2 = "/assets/textures/188713-883612331_small.mp4";
+const TEX3 = "/assets/textures/9461-219710531_small.mp4";
+// Forefront imagery reused
+const CONSTRUCTION_IMG =
+  "/pictures/web design page/8machine-_-gCkv8mnmxm8-unsplash.jpg";
+const REAL_ESTATE_IMG = "/pictures/web design page/louisiana .jpg";
+const AUTO_IMG = "/pictures/web design page/gears.jpg";
+
 const title = "Ad Campaigns — ZeroMotion";
-const description = "AI‑first ad campaigns across Meta, Google, and TikTok that put your service in front of ready‑to‑buy locals.";
+const description =
+  "AI‑first ad campaigns across Meta, Google, and TikTok that put your service in front of ready‑to‑buy locals.";
 const ogImage = "/og-webdesign.png";
 ---
+
 <BaseLayout {title} {description} {ogImage}>
   <main class="min-h-screen">
     <!-- HERO -->
-    <section class="relative overflow-hidden section-padding" aria-label="Hero">
-      <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(60% 50% at 50% 0%, rgba(124,58,237,0.15), rgba(10,10,11,0) 60%)"></div>
-      <div class="container-page grid gap-10 items-center" style="grid-template-columns:1fr;@media(min-width:1024px){grid-template-columns:1.1fr .9fr}">
-        <div>
-          <h1 class="h1 reveal" style="letter-spacing:-.01em">
-            Your service. <span class="text-transparent bg-clip-text" style="background-image:linear-gradient(90deg,#A855F7,#818CF8)">Their screen.</span><br/>Zero guesswork.
-          </h1>
-          <p class="subtle reveal" style="margin-top:12px;max-width:640px">
-            We get real people in Houma, Thibodaux, and the bayou region to see your business—right when they’re ready to buy. You do the work. We make sure customers show up.
-          </p>
-          <div class="reveal" style="display:flex;gap:12px;margin-top:18px">
-            <a href="#start" class="btn-primary shadow-lg" style="box-shadow:0 10px 30px rgba(124,58,237,.25)">Start my campaign</a>
-            <a href="#proof" class="btn-ghost">See local results</a>
-          </div>
-          <div class="subtle reveal" style="margin-top:10px">Meta • Google • TikTok • YouTube • Maps • Retargeting</div>
+    <section
+      class="relative overflow-hidden section-padding"
+      aria-label="Hero"
+      style="min-height:72vh;display:grid;align-items:end"
+    >
+      <video
+        class="absolute inset-0 w-full h-full object-cover"
+        src="/ads-campaign%20page/hero_video.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      ></video>
+      <div
+        class="absolute inset-0"
+        style="background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.25) 35%,rgba(0,0,0,.75))"
+      >
+      </div>
+      <div
+        class="container-page relative z-[1] grid gap-6"
+        style="grid-template-columns:1fr;max-width:960px"
+      >
+        <h1 class="h1 reveal" style="letter-spacing:-.01em">
+          Your service. Their screen. Zero guesswork.
+        </h1>
+        <p class="subtle reveal" style="max-width:720px">
+          We put your business in front of people ready to buy — without wasting
+          a dollar.
+        </p>
+        <div class="reveal" style="display:flex;flex-wrap:wrap;gap:12px">
+          <a
+            href="#lead"
+            class="btn-primary shadow-lg"
+            data-cta="hero_primary_book_plan"
+            style="box-shadow:0 10px 30px rgba(124,58,237,.25)"
+            >Book my free ad plan</a
+          >
+          <a
+            href="#how"
+            class="btn-ghost"
+            data-cta="hero_secondary_how_it_works">See how it works</a
+          >
         </div>
-        <div class="relative reveal">
-          <div class="rounded-2xl border border-white/10 bg-white/5 overflow-hidden" style="aspect-ratio:16/10;box-shadow:0 30px 80px rgba(0,0,0,.35)">
-            <img src="/photos/ad-campaigns.jpg" alt="Ad dashboard preview" loading="lazy" style="width:100%;height:100%;object-fit:cover"/>
-            <div class="absolute left-3 top-3 text-xs text-white/80 bg-black/40 border border-white/10 px-3 py-1 rounded-full backdrop-blur">Campaign Control • Live</div>
-          </div>
+        <div class="subtle reveal" style="margin-top:4px">
+          Meta • Google • TikTok • YouTube • Maps • Retargeting
         </div>
+      </div>
+    </section>
+
+    <!-- Break (Forefront-style texture) -->
+    <section
+      class="section-padding"
+      style={`position:relative;isolation:isolate;overflow:hidden`}
+      aria-hidden="true"
+    >
+      <video
+        src={TEX2}
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        class="absolute inset-0 w-full h-full object-cover"
+      ></video>
+      <div
+        style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.2) 40%,rgba(0,0,0,.6));z-index:0"
+      >
+      </div>
+      <div class="container-page" style="position:relative;z-index:1">
+        <div class="h-6"></div>
       </div>
     </section>
 
     <!-- PROBLEM -->
     <section class="section-padding" aria-label="The problem we solve">
-      <div class="container-page grid gap-6" style="grid-template-columns:1fr;@media(min-width:900px){grid-template-columns:1fr 1fr}">
+      <div
+        class="container-page grid gap-6"
+        style="grid-template-columns:1fr;@media(min-width:900px){grid-template-columns:1fr 1fr}"
+      >
         <div class="card reveal" style="padding:20px">
-          <h2 class="h3">You’re not bad at business—the game just changed.</h2>
+          <h2 class="h3">You’re not bad at business—the game just moved.</h2>
           <ul class="subtle" style="margin-top:10px;display:grid;gap:8px">
-            <li>• Customers don’t browse phonebooks—they search, scroll, and tap.</li>
-            <li>• Competitors are stealing attention on Facebook, Google, and TikTok.</li>
+            <li>
+              • Customers don’t browse phonebooks—they search, scroll, and tap.
+            </li>
+            <li>
+              • Competitors are stealing attention on Facebook, Google, and
+              TikTok.
+            </li>
             <li>• If you’re not where people are looking, you don’t exist.</li>
           </ul>
-          <p class="subtle" style="margin-top:10px">That’s where we come in.</p>
+          <p class="subtle" style="margin-top:10px">
+            We make sure locals actually see you—right when they’re ready to
+            buy.
+          </p>
         </div>
-        <div class="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950 p-6">
+        <div
+          class="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950 p-6"
+        >
           <h3 class="subtle" style="font-weight:600">In plain English</h3>
           <p class="subtle" style="margin-top:8px">
-            We put your service in front of people who <em>need it right now</em>. When they click, they land on a page
-            that makes it easy to call, book, or message you. No learning ad dashboards. No guessing keywords.
+            We put your service in front of people who <em>need it right now</em
+            >. When they click, they land on a page that makes it easy to call,
+            book, or message you. No learning ad dashboards. No guessing
+            keywords.
           </p>
         </div>
       </div>
     </section>
 
     <!-- PROCESS -->
-    <section class="section-padding" aria-label="Simple process">
+    <section class="section-padding" id="how" aria-label="Simple process">
       <div class="container-page">
         <h2 class="h2 reveal">How we run ads (simple and effective)</h2>
-        <div class="grid reveal" style="margin-top:18px;gap:14px;grid-template-columns:1fr;@media(min-width:900px){grid-template-columns:repeat(3,1fr)}">
-          <div class="card group" style="padding:20px;transition:transform .2s, background .2s">
+        <div
+          class="grid reveal"
+          style="margin-top:18px;gap:14px;grid-template-columns:1fr;@media(min-width:900px){grid-template-columns:repeat(3,1fr)}"
+        >
+          <div
+            class="card group"
+            style="padding:20px;transition:transform .2s, background .2s"
+          >
             <div class="subtle">Step 1</div>
             <h3 class="h3" style="margin-top:4px">We learn your business</h3>
-            <p class="subtle" style="margin-top:6px">What you do best, who you serve, and where you want more jobs.</p>
+            <p class="subtle" style="margin-top:6px">
+              What you do best, who you serve, and where you want more jobs.
+            </p>
           </div>
-          <div class="card group" style="padding:20px;transition:transform .2s, background .2s">
+          <div
+            class="card group"
+            style="padding:20px;transition:transform .2s, background .2s"
+          >
             <div class="subtle">Step 2</div>
             <h3 class="h3" style="margin-top:4px">We build targeted ads</h3>
-            <p class="subtle" style="margin-top:6px">Your service shown only to people likely to buy—by town, interest, and intent.</p>
+            <p class="subtle" style="margin-top:6px">
+              Your service shown only to people likely to buy—by town, interest,
+              and intent.
+            </p>
           </div>
-          <div class="card group" style="padding:20px;transition:transform .2s, background .2s">
+          <div
+            class="card group"
+            style="padding:20px;transition:transform .2s, background .2s"
+          >
             <div class="subtle">Step 3</div>
             <h3 class="h3" style="margin-top:4px">We drive customers to you</h3>
-            <p class="subtle" style="margin-top:6px">Calls, bookings, or messages—tracked so you see the ROI, not just clicks.</p>
+            <p class="subtle" style="margin-top:6px">
+              Calls, bookings, or messages—tracked so you see the ROI, not just
+              clicks.
+            </p>
           </div>
         </div>
-        <div class="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950" style="margin-top:16px;padding:20px">
+        <div
+          class="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950"
+          style="margin-top:16px;padding:20px"
+        >
           <div class="subtle">What happens under the hood</div>
-          <div class="grid" style="margin-top:10px;gap:10px;grid-template-columns:1fr;@media(min-width:700px){grid-template-columns:1fr auto 1fr auto 1fr};text-align:center">
-            <div class="rounded-xl border border-white/10 bg-white/5 py-4">Ad Platforms</div>
+          <div
+            class="grid"
+            style="margin-top:10px;gap:10px;grid-template-columns:1fr;@media(min-width:700px){grid-template-columns:1fr auto 1fr auto 1fr};text-align:center"
+          >
+            <div class="rounded-xl border border-white/10 bg-white/5 py-4">
+              Ad Platforms
+            </div>
             <div class="py-4">→</div>
-            <div class="rounded-xl border border-white/10 bg-white/5 py-4">Targeted Audience</div>
+            <div class="rounded-xl border border-white/10 bg-white/5 py-4">
+              Targeted Audience
+            </div>
             <div class="py-4">→</div>
-            <div class="rounded-xl border border-white/10 bg-white/5 py-4">Website / Booking</div>
+            <div class="rounded-xl border border-white/10 bg-white/5 py-4">
+              Website / Booking
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- WHY IT WORKS / PROOF -->
+    <!-- WHY IT WORKS -->
     <section class="section-padding" aria-label="Why it works">
-      <div class="container-page grid gap-8" style="grid-template-columns:1fr;@media(min-width:1024px){grid-template-columns:1fr 1fr}">
+      <div class="container-page">
         <div class="card reveal" style="padding:20px">
           <h2 class="h3">Why it works</h2>
           <ul class="subtle" style="margin-top:10px;display:grid;gap:8px">
-            <li>• Local-first targeting (Houma, Thibodaux, bayou region)</li>
-            <li>• Offer-driven creative that gets calls, not just likes</li>
-            <li>• Retargeting so warm prospects don’t forget you</li>
-            <li>• Weekly reporting in plain English</li>
+            <li>• Local‑first targeting (Houma, Thibodaux, bayou region)</li>
+            <li>• Retargeting that brings warm prospects back</li>
+            <li>• Call tracking and form tracking so you see ROI</li>
+            <li>• Cut losers fast, scale what converts</li>
           </ul>
         </div>
-        <div class="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950 p-6" id="proof">
-          <h3 class="subtle" style="font-weight:600">Local proof</h3>
-          <div class="grid" style="margin-top:12px;gap:12px;grid-template-columns:1fr;@media(min-width:900px){grid-template-columns:repeat(3,1fr)}">
-            <MiniStat value="4.2x" label="Average ROI" />
-            <MiniStat value="+237%" label="Lead volume (30 days)" />
-            <MiniStat value="<$18" label="Avg. cost per call" />
-          </div>
-          <p class="subtle" style="margin-top:10px;font-size:12px">*Real client ranges; exact results vary by industry and market.</p>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES WE SCALE -->
+    <section class="section-padding" aria-label="Industries we scale">
+      <div class="container-page">
+        <h2 class="h2 reveal">Industries we scale in Houma</h2>
+        <div
+          class="grid reveal"
+          style="margin-top:16px;gap:14px;grid-template-columns:1fr;@media(min-width:1000px){grid-template-columns:repeat(3,1fr)}"
+        >
+          <a
+            href="#lead"
+            class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6E00FF]"
+            data-cta="industries_construction_cta"
+          >
+            <video
+              class="absolute inset-0 w-full h-full object-cover opacity-60 will-change-transform transition-transform duration-300 group-hover:scale-105"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            >
+              <source
+                src="/ads-campaign%20page/construction.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/70 group-hover:from-[#6E00FF]/20 group-hover:via-black/30 group-hover:to-black/70 transition-colors"
+            >
+            </div>
+            <div class="relative p-6 min-h-[220px] flex flex-col justify-end">
+              <h3 class="h3">Construction & Trades</h3>
+              <p class="text-white/85 text-sm">Booked jobs, not just clicks.</p>
+              <p class="subtle mt-1">
+                Emergency-call campaigns • Radius targeting • Call-only ads •
+                After-hours retargeting
+              </p>
+            </div>
+          </a>
+          <a
+            href="#lead"
+            class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6E00FF]"
+            data-cta="industries_real_estate_cta"
+          >
+            <video
+              class="absolute inset-0 w-full h-full object-cover opacity-60 will-change-transform transition-transform duration-300 group-hover:scale-105"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            >
+              <source
+                src="/ads-campaign%20page/realestate.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/70 group-hover:from-[#6E00FF]/20 group-hover:via-black/30 group-hover:to-black/70 transition-colors"
+            >
+            </div>
+            <div class="relative p-6 min-h-[220px] flex flex-col justify-end">
+              <h3 class="h3">Real Estate</h3>
+              <p class="text-white/85 text-sm">
+                Showings and signed contracts.
+              </p>
+              <p class="subtle mt-1">
+                Lead forms that qualify • Home value hooks • Lookalike buyers •
+                Map pin targeting
+              </p>
+            </div>
+          </a>
+          <a
+            href="#lead"
+            class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6E00FF]"
+            data-cta="industries_auto_cta"
+          >
+            <video
+              class="absolute inset-0 w-full h-full object-cover opacity-60 will-change-transform transition-transform duration-300 group-hover:scale-105"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            >
+              <source
+                src="/ads-campaign%20page/AutoDetailing.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/70 group-hover:from-[#6E00FF]/20 group-hover:via-black/30 group-hover:to-black/70 transition-colors"
+            >
+            </div>
+            <div class="relative p-6 min-h-[220px] flex flex-col justify-end">
+              <h3 class="h3">Auto Detailing & Tint</h3>
+              <p class="text-white/85 text-sm">Calendars filled weekly.</p>
+              <p class="subtle mt-1">
+                Local intent keywords • Promo bundles • Instagram DM capture •
+                Review boosts
+              </p>
+            </div>
+          </a>
         </div>
+        <p class="subtle reveal" style="margin-top:10px">
+          <a
+            href="#lead"
+            class="underline underline-offset-4"
+            data-cta="industries_tailor_cta"
+            >Don’t see your industry? We’ll tailor it. →</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Break (Forefront-style texture) -->
+    <section
+      class="section-padding"
+      style={`position:relative;isolation:isolate;overflow:hidden`}
+      aria-hidden="true"
+    >
+      <video
+        src={TEX3}
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        class="absolute inset-0 w-full h-full object-cover"
+      ></video>
+      <div
+        style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.2) 40%,rgba(0,0,0,.6));z-index:0"
+      >
+      </div>
+      <div class="container-page" style="position:relative;z-index:1">
+        <div class="h-6"></div>
       </div>
     </section>
 
@@ -120,12 +355,38 @@ const ogImage = "/og-webdesign.png";
     <section class="section-padding" aria-label="Pricing snapshot">
       <div class="container-page">
         <h2 class="h2 reveal">Simple pricing</h2>
-        <div class="grid reveal" style="margin-top:16px;gap:14px;grid-template-columns:1fr;@media(min-width:900px){grid-template-columns:repeat(3,1fr)}">
-          <PricingCard name="Starter" price="$0 setup" features={["Meta or Google","1 landing page","Weekly report"]} note="We launch your first funnel + ads. You cover ad spend." />
-          <PricingCard name="Growth" price="$997/mo" features={["Meta + Google","2–3 ad creatives/mo","Retargeting"]} note="Best for service businesses ready to scale appointments." highlight="Best Seller" />
-          <PricingCard name="Dominate" price="$1997/mo" features={["Meta + Google + TikTok","4–6 creatives/mo","Conversion rate optimization"]} note="Multi-platform reach with content & offers that hit hard." />
+        <div
+          class="grid reveal"
+          style="margin-top:16px;gap:14px;grid-template-columns:1fr;@media(min-width:900px){grid-template-columns:repeat(3,1fr)}"
+        >
+          <PricingCard
+            name="Starter"
+            price="$0 setup"
+            features={["Meta or Google", "1 landing page", "Weekly report"]}
+            note="We launch your first funnel + ads. You cover ad spend."
+          />
+          <PricingCard
+            name="Growth"
+            price="$997/mo"
+            features={["Meta + Google", "2–3 ad creatives/mo", "Retargeting"]}
+            note="Best for service businesses ready to scale appointments."
+            highlight="Best Seller"
+          />
+          <PricingCard
+            name="Dominate"
+            price="$1997/mo"
+            features={[
+              "Meta + Google + TikTok",
+              "4–6 creatives/mo",
+              "Conversion rate optimization",
+            ]}
+            note="Multi-platform reach with content & offers that hit hard."
+          />
         </div>
-        <p class="subtle" style="margin-top:8px;font-size:12px">*Pricing is flexible by industry and seasonality. Ask about local partner rates.</p>
+        <p class="subtle" style="margin-top:8px;font-size:12px">
+          *Pricing is flexible by industry and seasonality. Ask about local
+          partner rates.
+        </p>
       </div>
     </section>
 
@@ -133,39 +394,102 @@ const ogImage = "/og-webdesign.png";
     <section class="section-padding" aria-label="FAQ">
       <div class="container-page" style="max-width:860px">
         <h2 class="h2 reveal">Questions, answered</h2>
-        <div class="reveal" style="margin-top:12px;display:grid;gap:10px" id="faq">
-          <FAQItem q="How fast can we start?" a="Usually within 3–5 business days once we align on your offers and target area." />
-          <FAQItem q="Do I need a website?" a="We can launch with a simple, fast landing page that we host—no problem." />
-          <FAQItem q="How much should I spend on ads?" a="Most local service businesses start between $20–$70/day and scale as the calls come in." />
-          <FAQItem q="What reports do I get?" a="Plain-English weekly summaries with leads/calls, cost per lead, and what we’re improving next." />
+        <div
+          class="reveal"
+          style="margin-top:12px;display:grid;gap:10px"
+          id="faq"
+        >
+          <FAQItem
+            q="How fast can we start?"
+            a="Usually within 3–5 business days once we align on your offers and target area."
+          />
+          <FAQItem
+            q="Do I need a website?"
+            a="We can launch with a simple, fast landing page that we host—no problem."
+          />
+          <FAQItem
+            q="How much should I spend on ads?"
+            a="Most local service businesses start between $20–$70/day and scale as the calls come in."
+          />
+          <FAQItem
+            q="What reports do I get?"
+            a="Plain-English weekly summaries with leads/calls, cost per lead, and what we’re improving next."
+          />
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section-padding" id="start" aria-label="Get started">
-      <div class="container-page grid gap-8" style="grid-template-columns:1fr;@media(min-width:1024px){grid-template-columns:1fr 1fr}">
+    <!-- LEAD FORM -->
+    <section class="section-padding" id="lead" aria-label="Get started">
+      <div
+        class="container-page grid gap-8"
+        style="grid-template-columns:1fr;@media(min-width:1024px){grid-template-columns:1fr 1fr}"
+      >
         <div class="card reveal" style="padding:20px">
           <h2 class="h3">Let’s fill your calendar</h2>
-          <p class="subtle" style="margin-top:6px">Tell us your service and area—our team will reply with a simple plan and next steps.</p>
-          <form class="grid" style="margin-top:14px;gap:10px" action="/api/lead" method="POST">
-            <input name="name" required placeholder="Your name" class="bg-zinc-900/80 rounded-lg px-4 py-3 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" />
-            <input name="business" placeholder="Business name (optional)" class="bg-zinc-900/80 rounded-lg px-4 py-3 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" />
-            <input name="phone" required placeholder="Phone" class="bg-zinc-900/80 rounded-lg px-4 py-3 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" />
-            <input name="email" placeholder="Email" class="bg-zinc-900/80 rounded-lg px-4 py-3 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" />
-            <textarea name="service" required placeholder="What service do you offer? Which areas do you serve?" class="min-h-[120px] bg-zinc-900/80 rounded-lg px-4 py-3 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"></textarea>
-            <button class="btn-primary" style="margin-top:6px">Request my plan</button>
-            <p class="subtle" style="font-size:12px">No spam. We’ll call or text you within 1 business day.</p>
+          <p class="subtle" style="margin-top:6px">
+            Tell us your service and area—our team will reply with a simple plan
+            and next steps.
+          </p>
+          <form
+            class="grid"
+            style="margin-top:14px;gap:10px"
+            action="/api/lead"
+            method="POST"
+          >
+            <input
+              name="name"
+              required
+              placeholder="Name"
+              autocomplete="name"
+              class="bg-zinc-900/80 rounded-lg px-4 py-3 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+            />
+            <input
+              name="phone"
+              required
+              placeholder="Phone"
+              inputmode="tel"
+              autocomplete="tel"
+              class="bg-zinc-900/80 rounded-lg px-4 py-3 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+            />
+            <input
+              name="businessType"
+              placeholder="Business Type"
+              class="bg-zinc-900/80 rounded-lg px-4 py-3 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+            />
+            <textarea
+              name="notes"
+              placeholder="Optional notes"
+              class="min-h-[120px] bg-zinc-900/80 rounded-lg px-4 py-3 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+            ></textarea>
+            <input type="hidden" name="source" value="ad-campaigns" />
+            <button
+              class="btn-primary"
+              data-cta="lead_submit"
+              style="margin-top:6px">Request my plan</button
+            >
+            <p class="subtle" style="font-size:12px">
+              No spam. We’ll call or text you within 1 business day.
+            </p>
           </form>
         </div>
-        <div class="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950 p-6">
+        <div
+          class="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950 p-6"
+        >
           <h3 class="subtle" style="font-weight:600">What happens next</h3>
-          <ol class="subtle" style="margin-top:8px;display:grid;gap:6px;font-size:14px">
+          <ol
+            class="subtle"
+            style="margin-top:8px;display:grid;gap:6px;font-size:14px"
+          >
             <li>1) We confirm your offer and service area.</li>
             <li>2) We set up targeting, ads, and your booking flow.</li>
             <li>3) You get weekly updates and live lead tracking.</li>
           </ol>
-          <div class="subtle" style="margin-top:14px;font-size:12px">Prefer a call? <a href="tel:+19852170368" class="underline underline-offset-4">(985) 217‑0368</a></div>
+          <div class="subtle" style="margin-top:14px;font-size:12px">
+            Prefer a call? <a
+              href="tel:+19852170368"
+              class="underline underline-offset-4">(985) 217‑0368</a>
+          </div>
         </div>
       </div>
     </section>
@@ -173,12 +497,22 @@ const ogImage = "/og-webdesign.png";
 
   <!-- micro scroll-reveal helper (tailwind-style classes) -->
   <script is:inline>
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(!prefersReduced && 'IntersectionObserver' in window){
-      const io = new IntersectionObserver((entries)=>{
-        for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target); } }
-      }, { threshold: 0.12 });
-      document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (!prefersReduced && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add("reveal-in");
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
     }
   </script>
 </BaseLayout>
@@ -192,5 +526,3 @@ Performance checklist
 - Tailwind/utility-only; no extra libs
 - Accessible landmarks and labels
 -->
-
-

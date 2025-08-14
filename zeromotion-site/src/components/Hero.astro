@@ -1,17 +1,35 @@
 ---
 import TransparentLogo from "./TransparentLogo.astro";
-import HeroInteractive from "./HeroInteractive.tsx";
 ---
-<section id="hero" class="relative isolate overflow-hidden bg-black min-h-[70svh] sm:min-h-[78svh] grid place-items-center" aria-labelledby="hero-title">
-  <video class="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover brightness-[0.45]" autoplay muted loop playsinline preload="metadata">
-    <source src="/assets/textures/36471-410610193_small.mp4" type="video/mp4" />
+
+<section
+  id="hero"
+  class="relative isolate overflow-hidden bg-black min-h-[70svh] sm:min-h-[78svh] grid place-items-center"
+  aria-labelledby="hero-title"
+>
+  <video
+    class="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover brightness-[0.45]"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+  >
+    <source src="/photos/homepage_hero.mp4" type="video/mp4" />
   </video>
-  <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-black/80 via-transparent to-black/60"></div>
+  <div
+    class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-black/80 via-transparent to-black/60"
+  >
+  </div>
   <div class="relative container-page text-center">
-    <TransparentLogo class="mx-auto mb-4 h-16 sm:h-24" />
+    <TransparentLogo
+      class="mx-auto mb-6 h-80 sm:h-[28rem] md:h-[36rem] lg:h-[40rem]"
+    />
     <h1 id="hero-title" class="h1">Precision in Motion.</h1>
-    <p class="text-white/85 max-w-xl mx-auto mt-3">ZeroMotion leads Houma & Thibodaux into the digital future — AI‑powered websites, ads, and automation built to convert.</p>
-    <HeroInteractive client:visible />
+    <p class="text-white/85 max-w-xl mx-auto mt-3">
+      ZeroMotion leads Houma & Thibodaux into the digital future — AI‑powered
+      websites, ads, and automation built to convert.
+    </p>
     <div class="mt-6">
       <a href="#services" class="btn-primary">Get Started</a>
     </div>

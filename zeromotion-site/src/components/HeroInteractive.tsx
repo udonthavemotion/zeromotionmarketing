@@ -26,11 +26,11 @@ const HeroInteractive = memo(function HeroInteractive() {
       >
         Get a free 3-step Growth Audit
       </button>
-      {!ready && <p className="mt-2 text-xs opacity-70">Optimizing for speed…</p>}
+      {!ready && (
+        <p className="mt-2 text-xs opacity-70">Optimizing for speed…</p>
+      )}
     </div>
   );
 });
 
 export default HeroInteractive;
-
-
