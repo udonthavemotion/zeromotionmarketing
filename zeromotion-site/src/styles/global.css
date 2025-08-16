@@ -51,6 +51,20 @@ body {
   @apply backdrop-blur-md bg-white/5 border border-white/10;
 }
 
+/* Decorative gradient ring wrapper for important panels (e.g., forms) */
+.gradient-frame {
+  padding: 1px;
+  border-radius: 16px; /* match rounded-2xl */
+  background:
+    conic-gradient(from 220deg at 50% 0%, rgba(110,0,255,0.45), transparent 35%, rgba(75,0,255,0.35) 70%, transparent 100%);
+}
+.gradient-inner {
+  border-radius: 15px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(6px);
+}
+
 a {
   @apply outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink rounded-md;
 }
